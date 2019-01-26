@@ -7,7 +7,7 @@
 custom_solver_bias = 0.0
 radius = 7.5
 
-[node name="PowerUp" type="Node2D" index="0"]
+[node name="PowerUp" type="Node2D"]
 
 [node name="PowerUpKin" type="KinematicBody2D" parent="." index="0"]
 
@@ -35,5 +35,6 @@ invert_border = 100.0
 [node name="PowerUpColl2D" type="CollisionShape2D" parent="PowerUpKin" index="1"]
 
 shape = SubResource( 1 )
+disabled = true
 
 

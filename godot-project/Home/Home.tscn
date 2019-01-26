@@ -1,0 +1,35 @@
+[gd_scene format=2]
+
+[node name="Home" type="Node2D"]
+
+[node name="OutsideShape" type="Polygon2D" parent="." index="0"]
+
+polygon = PoolVector2Array( -8, -10, -10, -8, -10, 8, -8, 10, 8, 10, 10, 8, 10, -8, 8, -10 )
+uv = PoolVector2Array(  )
+color = Color( 0.933594, 0, 0.678314, 1 )
+vertex_colors = PoolColorArray(  )
+offset = Vector2( 0, 0 )
+antialiased = false
+texture = null
+texture_offset = Vector2( 0, 0 )
+texture_scale = Vector2( 1, 1 )
+texture_rotation_degrees = 0.0
+invert_enable = false
+invert_border = 100.0
+
+[node name="InsideShape" type="Polygon2D" parent="OutsideShape" index="0"]
+
+polygon = PoolVector2Array( 0, -5, -5, 0, 0, 5, 5, 0 )
+uv = PoolVector2Array(  )
+color = Color( 0.0505829, 0.101377, 0.863281, 1 )
+vertex_colors = PoolColorArray(  )
+offset = Vector2( 0, 0 )
+antialiased = false
+texture = null
+texture_offset = Vector2( 0, 0 )
+texture_scale = Vector2( 1, 1 )
+texture_rotation_degrees = 0.0
+invert_enable = false
+invert_border = 100.0
+
+
