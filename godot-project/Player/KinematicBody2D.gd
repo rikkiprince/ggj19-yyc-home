@@ -8,24 +8,37 @@ var joypad_vec
 # Used to inform the UI
 signal deathSignal
 signal staminaSignal
+signal hitSignal
+
+onready var startTime = OS.get_ticks_msec()
 
 func _ready():
 	joypad_vec = Vector2(0,0)
 
+# Drain a tiny bit of stamina
+func _process(delta):
+	# if (not in home):
+	get_parent().stamina -= 0.01
+	emit_signal("staminaSignal", get_parent().stamina)
+	print (startTime)
 
 func _handleCollision(collision_info):
 	print(collision_info.collider)
 	joypad_vec = joypad_vec.bounce(collision_info.normal)
-	# also reduce stamina
-	get_parent().stamina -= 1.0
-	print(get_parent().stamina)
-	emit_signal("staminaSignal", get_parent().stamina)
-	# Check if player is dead
-	if (get_parent().stamina <= 0.0):
-		print("Game Over - No Stamina")
-		emit_signal("deathSignal")
-
-		
+	
+	
+	if ((OS.get_ticks_msec() - startTime) > 500.0):
+		startTime = OS.get_ticks_msec()	
+		# Reduce stamina
+		get_parent().stamina -= 5.0
+		print(get_parent().stamina)
+		emit_signal("hitSignal", get_parent().stamina)
+		# Check if player is dead
+		if (get_parent().stamina <= 0.0):
+			print("Game Over - No Stamina")
+			emit_signal("deathSignal")
+	
+			
 
 func _physics_process(delta):
 #	if collision_info:
@@ -45,6 +58,7 @@ func _physics_process(delta):
 
 #	move_and_slide(joypad_vec*delta*MOTION_SPEED)
 	var collision_info = move_and_collide(joypad_vec * delta*MOTION_SPEED)
+	
 	# this currently bounces off everything, should be just obstacles
 	if (collision_info != null):
 		_handleCollision(collision_info)

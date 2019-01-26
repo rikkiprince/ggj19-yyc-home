@@ -15,7 +15,7 @@ func _ready():
 #	pass
 
 
-func _on_KinematicBody2D_staminaSignal(stamina):
+func _on_KinematicBody2D_hitSignal(stamina):
 	print ("sound!")
 	if (!self.playing): # make sure sound isnt already playing
 		self.play(0)
