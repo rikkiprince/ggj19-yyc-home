@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Player/Player.gd" type="Script" id=1]
+[ext_resource path="res://Player/KinematicBody2D.gd" type="Script" id=2]
 
 [sub_resource type="GDScript" id=1]
 
@@ -16,7 +17,7 @@ func _ready():
 custom_solver_bias = 0.0
 radius = 9.0
 
-[node name="Player" type="Node2D"]
+[node name="Player" type="Node2D" index="0"]
 
 script = ExtResource( 1 )
 
@@ -26,6 +27,7 @@ input_pickable = false
 collision_layer = 1
 collision_mask = 1
 collision/safe_margin = 0.08
+script = ExtResource( 2 )
 _sections_unfolded = [ "Collision", "Pickable", "collision" ]
 
 [node name="Polygon2D" type="Polygon2D" parent="KinematicBody2D" index="0"]

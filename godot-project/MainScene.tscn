@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://MainScene.gd" type="Script" id=1]
 [ext_resource path="res://blurred-blurry-bokeh-220118.jpg" type="Texture" id=2]
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=3]
 [ext_resource path="res://PowerUp/PowerUp.tscn" type="PackedScene" id=4]
 [ext_resource path="res://ambient-guitar-music.ogg" type="AudioStream" id=5]
+[ext_resource path="res://Obstacle.tscn" type="PackedScene" id=6]
 
 [node name="MainScene" type="Node" index="0"]
 
@@ -19,7 +20,7 @@ _sections_unfolded = [ "Transform", "Z Index" ]
 
 [node name="PowerUp" parent="." index="2" instance=ExtResource( 4 )]
 
-position = Vector2( 200, 200 )
+position = Vector2( 100, 100 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="Music" type="AudioStreamPlayer" parent="." index="3"]
@@ -30,5 +31,11 @@ pitch_scale = 1.0
 autoplay = true
 mix_target = 0
 bus = "Master"
+
+[node name="Obstacle" parent="." index="4" instance=ExtResource( 6 )]
+
+position = Vector2( 93.3942, -26.2202 )
+scale = Vector2( 2, 2 )
+_sections_unfolded = [ "Transform" ]
 
 
