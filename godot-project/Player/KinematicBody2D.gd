@@ -2,7 +2,7 @@ extends KinematicBody2D
 
 const MOTION_SPEED = 200
 #var JOYPAD_SENSITIVITY = 5
-const JOYPAD_DEADZONE = 0.50
+const JOYPAD_DEADZONE = 0.6
 var joypad_vec
 
 # Used to inform the UI

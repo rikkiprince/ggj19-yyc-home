@@ -6,7 +6,6 @@ const JOYPAD_DEADZONE = 0.50
 var joypad_vec
 var stamina
 
-
 export var max_object_capacity = 1
 var carried_objects = []
 
