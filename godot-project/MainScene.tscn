@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://MainScene.gd" type="Script" id=1]
 [ext_resource path="res://blurred-blurry-bokeh-220118.jpg" type="Texture" id=2]
@@ -6,7 +6,10 @@
 [ext_resource path="res://PowerUp/PowerUp.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Obstacle.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=6]
-[ext_resource path="res://ambient-guitar-music.ogg" type="AudioStream" id=7]
+[ext_resource path="res://Audio/ambient-guitar-music.ogg" type="AudioStream" id=7]
+[ext_resource path="res://StaminaBar/energy_bar_bg.png" type="Texture" id=8]
+[ext_resource path="res://StaminaBar/energy_bar_fill.png" type="Texture" id=9]
+[ext_resource path="res://TextureProgress.gd" type="Script" id=10]
 
 [node name="MainScene" type="Node" index="0"]
 
@@ -46,8 +49,53 @@ _sections_unfolded = [ "Transform" ]
 stream = ExtResource( 7 )
 volume_db = -10.0
 pitch_scale = 1.0
-autoplay = false
+autoplay = true
 mix_target = 0
 bus = "Master"
 
+[node name="UI" type="CanvasLayer" parent="." index="6"]
 
+layer = 1
+offset = Vector2( 0, 0 )
+rotation = 0.0
+scale = Vector2( 1, 1 )
+transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+
+[node name="TextureProgress" type="TextureProgress" parent="UI" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 375.0
+margin_top = 15.0
+margin_right = 25.0
+margin_bottom = 40.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+min_value = 0.0
+max_value = 100.0
+step = 1.0
+page = 0.0
+value = 100.0
+exp_edit = false
+rounded = false
+texture_under = ExtResource( 8 )
+texture_over = null
+texture_progress = ExtResource( 9 )
+radial_fill_degrees = 360.0
+radial_center_offset = Vector2( 0, 0 )
+nine_patch_stretch = false
+script = ExtResource( 10 )
+_sections_unfolded = [ "Margin" ]
+
+[connection signal="deathSignal" from="Player/KinematicBody2D" to="UI/TextureProgress" method="_on_KinematicBody2D_deathSignal"]
+
+[connection signal="staminaSignal" from="Player/KinematicBody2D" to="UI/TextureProgress" method="_on_KinematicBody2D_staminaSignal"]
+
+
+[editable path="Player"]

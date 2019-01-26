@@ -5,8 +5,27 @@ const MOTION_SPEED = 200
 const JOYPAD_DEADZONE = 0.50
 var joypad_vec
 
+# Used to inform the UI
+signal deathSignal
+signal staminaSignal
+
 func _ready():
 	joypad_vec = Vector2(0,0)
+
+
+func _handleCollision(collision_info):
+	print(collision_info.collider)
+	joypad_vec = joypad_vec.bounce(collision_info.normal)
+	# also reduce stamina
+	get_parent().stamina -= 1.0
+	print(get_parent().stamina)
+	emit_signal("staminaSignal", get_parent().stamina)
+	# Check if player is dead
+	if (get_parent().stamina <= 0.0):
+		print("Game Over - No Stamina")
+		emit_signal("deathSignal")
+
+		
 
 func _physics_process(delta):
 #	if collision_info:
@@ -28,7 +47,5 @@ func _physics_process(delta):
 	var collision_info = move_and_collide(joypad_vec * delta*MOTION_SPEED)
 	# this currently bounces off everything, should be just obstacles
 	if (collision_info != null):
-		print(collision_info.collider)
-		joypad_vec = joypad_vec.bounce(collision_info.normal)
-		# also reduce stamina
+		_handleCollision(collision_info)
 		
