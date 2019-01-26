@@ -20,6 +20,7 @@ radius = 9.0
 [node name="Player" type="Node2D"]
 
 script = ExtResource( 1 )
+max_object_capacity = 1
 
 [node name="KinematicBody2D" type="KinematicBody2D" parent="." index="0"]
 
@@ -28,7 +29,7 @@ collision_layer = 1
 collision_mask = 1
 collision/safe_margin = 0.08
 script = ExtResource( 2 )
-_sections_unfolded = [ "Collision", "Pickable", "collision" ]
+_sections_unfolded = [ "Collision", "Material", "Pause", "Pickable", "Transform", "Visibility", "Z Index", "collision" ]
 
 [node name="Polygon2D" type="Polygon2D" parent="KinematicBody2D" index="0"]
 
