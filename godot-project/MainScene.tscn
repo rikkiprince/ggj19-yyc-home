@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://blurred-blurry-bokeh-220118.jpg" type="Texture" id=1]
+[ext_resource path="res://Player/Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://PowerUp/PowerUp.tscn" type="PackedScene" id=3]
+
+[node name="MainScene" type="Node"]
+
+[node name="blurred-blurry-bokeh-220118" type="Sprite" parent="." index="0"]
+
+texture = ExtResource( 1 )
+_sections_unfolded = [ "Transform", "Z Index" ]
+
+[node name="Player" parent="." index="1" instance=ExtResource( 2 )]
+
+[node name="PowerUp" parent="." index="2" instance=ExtResource( 3 )]
+
+position = Vector2( 200, 200 )
+_sections_unfolded = [ "Transform" ]
+
+
