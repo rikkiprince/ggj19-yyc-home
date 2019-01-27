@@ -8,14 +8,17 @@ var stamina
 var healing
 var center_of_home_vector = null
 
-export var max_stamina = 25
+export var max_stamina = 10
 
 export var max_object_capacity = 1
 var carried_objects = []
 
+signal change_max_stamina_bar
+
 func _ready():
 	joypad_vec = Vector2(0,0)
 	stamina = max_stamina
+	emit_signal("change_max_stamina_bar", max_stamina)
 
 
 
@@ -37,7 +40,8 @@ func drop_object():
 	var temp = carried_objects
 	carried_objects = []
 	if(len(temp) > 0):
-		max_stamina += len(temp)
+		max_stamina += len(temp)*10
+		emit_signal("change_max_stamina_bar", max_stamina)
 		get_parent().get_node("DropSound").play()
 	return temp
 
