@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://MainScene.gd" type="Script" id=1]
 [ext_resource path="res://blurred-blurry-bokeh-220118.jpg" type="Texture" id=2]
@@ -13,6 +13,7 @@
 [ext_resource path="res://Audio/hitObject.wav" type="AudioStream" id=11]
 [ext_resource path="res://HitSound.gd" type="Script" id=12]
 [ext_resource path="res://Audio/ItemPickUp.ogg" type="AudioStream" id=13]
+[ext_resource path="res://Audio/ItemDropOff.ogg" type="AudioStream" id=14]
 
 [node name="MainScene" type="Node" index="0"]
 
@@ -115,6 +116,17 @@ script = ExtResource( 12 )
 [node name="PickUpSound" type="AudioStreamPlayer2D" parent="." index="9"]
 
 stream = ExtResource( 13 )
+volume_db = 0.0
+pitch_scale = 1.0
+autoplay = false
+max_distance = 2000.0
+attenuation = 1.0
+bus = "Master"
+area_mask = 1
+
+[node name="DropOffSound" type="AudioStreamPlayer2D" parent="." index="10"]
+
+stream = ExtResource( 14 )
 volume_db = 0.0
 pitch_scale = 1.0
 autoplay = false
