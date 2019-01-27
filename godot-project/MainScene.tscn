@@ -19,7 +19,7 @@
 [ext_resource path="res://Levels/LevelNorth.tscn" type="PackedScene" id=17]
 [ext_resource path="res://Levels/LevelEast.tscn" type="PackedScene" id=18]
 
-[node name="MainScene" type="Node" index="0"]
+[node name="MainScene" type="Node"]
 
 script = ExtResource( 1 )
 
@@ -63,16 +63,11 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="Player" parent="." index="7" instance=ExtResource( 7 )]
 
-editor/display_folded = true
 position = Vector2( -49.3312, 51.0264 )
 
 [node name="Camera2D" parent="Player/KinematicBody2D" index="1"]
 
-drag_margin_left = 0.7
-drag_margin_top = 0.7
-drag_margin_right = 0.7
-drag_margin_bottom = 0.7
-_sections_unfolded = [ "Drag Margin" ]
+_sections_unfolded = [ "Drag Margin", "Editor", "Limit" ]
 
 [node name="UI" type="CanvasLayer" parent="." index="8"]
 
@@ -174,7 +169,7 @@ position = Vector2( -389.399, -813.67 )
 
 [node name="LevelEast" parent="." index="15" instance=ExtResource( 18 )]
 
-position = Vector2( 1174.01, -23.2477 )
+position = Vector2( 1170, -20 )
 
 [connection signal="deathSignal" from="Player/KinematicBody2D" to="UI/Node2D/TextureProgress" method="_on_KinematicBody2D_deathSignal"]
 

@@ -15,7 +15,7 @@ func setGamePause(pause):
 		if k.name != "Background" && k.name != "UI" && k.name != "Music" && k.name != "HitSound":
 			k.set_visible(!pause)
 	get_node("Player").get_node("KinematicBody2D").paused = pause
-	get_node("SpikeyBoy").paused = pause
+	#get_node("SpikeyBoy").paused = pause
 	if (!pause):
 		gameStarted = true
 	
