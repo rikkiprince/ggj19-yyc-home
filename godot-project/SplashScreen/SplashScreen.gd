@@ -16,9 +16,8 @@ func _ready():
 	get_node("PauseMsg").visible = false
 
 func startScreenVisible(value):
-	get_parent().get_parent().get_node("Obstacle").visible = value
 	get_parent().get_parent().get_node("UI/Node2D").visible = value
-	get_parent().get_parent().get_node("PowerUp4").visible = value
+	get_parent().get_parent().get_node("LevelStart").visible = value
 
 func tick():
 	get_node("ButtonsAnim").nextFrame()

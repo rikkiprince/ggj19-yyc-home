@@ -5,7 +5,7 @@
 [ext_resource path="res://PowerUp/PowerUp.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Enemies/StarBoy/StarBoy.tscn" type="PackedScene" id=4]
 
-[node name="Node2D" type="Node2D" index="0"]
+[node name="Node2D" type="Node2D"]
 
 [node name="AstroidBelt" parent="." index="0" instance=ExtResource( 1 )]
 
@@ -51,6 +51,6 @@ position = Vector2( -220, 170 )
 
 [node name="PowerUp5" parent="." index="9" instance=ExtResource( 3 )]
 
-position = Vector2( 50, -350 )
+position = Vector2( -3.83722, -134.651 )
 
 
