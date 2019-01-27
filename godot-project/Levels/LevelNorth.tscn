@@ -37,7 +37,7 @@ position = Vector2( -500, 140 )
 
 [node name="AnimatedSprite" parent="BlinkyBoy" index="1"]
 
-frame = 4
+frame = 1
 
 [node name="Area2D" parent="BlinkyBoy" index="2"]
 
@@ -49,7 +49,7 @@ position = Vector2( 275, 0 )
 
 [node name="BlinkyBoy2" parent="." index="6" instance=ExtResource( 5 )]
 
-position = Vector2( -692.173, 343.535 )
+position = Vector2( -704.973, 345.662 )
 rotation = 3.14159
 scale = Vector2( 0.4, -0.4 )
 
@@ -65,11 +65,15 @@ scale = Vector2( 1, -1 )
 
 [node name="AnimatedSprite" parent="BlinkyBoy2" index="1"]
 
-frame = 4
+frame = 1
 
 [node name="CollisionShape2D" parent="BlinkyBoy2/Area2D" index="0"]
 
-position = Vector2( 151.841, -31.9999 )
+position = Vector2( 115.009, 0.774597 )
+
+[node name="CollisionShape2D2" parent="BlinkyBoy2/Area2D" index="1"]
+
+position = Vector2( -32, 140.685 )
 
 [node name="AstroidBeltB" parent="." index="7" instance=ExtResource( 6 )]
 
