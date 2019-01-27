@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://MainScene.gd" type="Script" id=1]
 [ext_resource path="res://blurred-blurry-bokeh-220118.jpg" type="Texture" id=2]
@@ -12,6 +12,11 @@
 [ext_resource path="res://Audio/ambient-guitar-music.ogg" type="AudioStream" id=10]
 [ext_resource path="res://Audio/hitObject.wav" type="AudioStream" id=11]
 [ext_resource path="res://HitSound.gd" type="Script" id=12]
+
+[sub_resource type="CircleShape2D" id=1]
+
+custom_solver_bias = 0.0
+radius = 58.5364
 
 [node name="MainScene" type="Node" index="0"]
 
@@ -28,6 +33,27 @@ _sections_unfolded = [ "Transform", "Z Index" ]
 position = Vector2( -50, 50 )
 scale = Vector2( 2, 2 )
 _sections_unfolded = [ "Transform" ]
+
+[node name="Area2D" type="Area2D" parent="Home" index="0"]
+
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Home/Area2D" index="0"]
+
+modulate = Color( 0.282288, 0.976563, 0, 0.464118 )
+self_modulate = Color( 0.507813, 0.251923, 0.251923, 1 )
+light_mask = 49169
+use_parent_material = true
+position = Vector2( -0.256115, -0.12524 )
+scale = Vector2( 0.266741, 0.276793 )
+shape = SubResource( 1 )
+_sections_unfolded = [ "Material", "Transform", "Visibility" ]
 
 [node name="PowerUp" parent="." index="2" instance=ExtResource( 4 )]
 
@@ -109,6 +135,10 @@ area_mask = 1
 script = ExtResource( 12 )
 _sections_unfolded = [ "Transform" ]
 
+[connection signal="body_entered" from="Home/Area2D" to="Player" method="_on_Area2D_body_entered"]
+
+[connection signal="body_exited" from="Home/Area2D" to="Player" method="_on_Area2D_body_exited"]
+
 [connection signal="deathSignal" from="Player/KinematicBody2D" to="UI/TextureProgress" method="_on_KinematicBody2D_deathSignal"]
 
 [connection signal="hitSignal" from="Player/KinematicBody2D" to="UI/TextureProgress" method="_on_KinematicBody2D_hitSignal"]
@@ -120,4 +150,5 @@ _sections_unfolded = [ "Transform" ]
 [connection signal="staminaSignal" from="Player/KinematicBody2D" to="HitSound" method="_on_KinematicBody2D_staminaSignal"]
 
 
+[editable path="Home"]
 [editable path="Player"]

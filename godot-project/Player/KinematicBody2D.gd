@@ -18,9 +18,14 @@ func _ready():
 # Drain a tiny bit of stamina
 func _process(delta):
 	# if (not in home):
-	get_parent().stamina -= 0.01
-	emit_signal("staminaSignal", get_parent().stamina)
-	print (startTime)
+	if(get_parent().healing and get_parent().stamina < 100):
+		get_parent().stamina += 0.08
+		emit_signal("staminaSignal", get_parent().stamina)
+	if(!get_parent().healing):
+		get_parent().stamina -= 0.01
+		emit_signal("staminaSignal", get_parent().stamina)
+		
+
 
 func _handleCollision(collision_info):
 	print(collision_info.collider)

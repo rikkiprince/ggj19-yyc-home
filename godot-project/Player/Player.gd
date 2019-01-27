@@ -5,6 +5,7 @@ const MOTION_SPEED = 8000
 const JOYPAD_DEADZONE = 0.50
 var joypad_vec
 var stamina
+var healing
 
 export var max_object_capacity = 1
 var carried_objects = []
@@ -24,3 +25,11 @@ func pick_up_object(object, type):
 	print("picked up "+str(type))
 	carried_objects.append(type)
 	return true
+
+func _on_Area2D_body_entered(body):
+	print("Heal")
+	healing = true;
+
+func _on_Area2D_body_exited(body):
+	print("Exit Heal")
+	healing = false;
