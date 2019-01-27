@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://MainScene.gd" type="Script" id=1]
 [ext_resource path="res://blurred-blurry-bokeh-220118.jpg" type="Texture" id=2]
@@ -18,6 +18,7 @@
 [ext_resource path="res://Levels/LevelWest.tscn" type="PackedScene" id=16]
 [ext_resource path="res://Levels/LevelNorth.tscn" type="PackedScene" id=17]
 [ext_resource path="res://Levels/LevelEast.tscn" type="PackedScene" id=18]
+[ext_resource path="res://SplashScreen/SplashScreen.tscn" type="PackedScene" id=19]
 
 [node name="MainScene" type="Node"]
 
@@ -56,7 +57,6 @@ position = Vector2( -26.0177, 669.978 )
 
 [node name="Obstacle" parent="." index="6" instance=ExtResource( 6 )]
 
-editor/display_folded = true
 position = Vector2( 245.276, 267.357 )
 scale = Vector2( 2, 2 )
 _sections_unfolded = [ "Transform" ]
@@ -171,15 +171,19 @@ position = Vector2( -389.399, -813.67 )
 
 position = Vector2( 1170, -20 )
 
-[connection signal="deathSignal" from="Player/KinematicBody2D" to="UI/Node2D/TextureProgress" method="_on_KinematicBody2D_deathSignal"]
+[node name="SplashScreen" parent="." index="16" instance=ExtResource( 19 )]
 
-[connection signal="hitSignal" from="Player/KinematicBody2D" to="UI/Node2D/TextureProgress" method="_on_KinematicBody2D_hitSignal"]
+position = Vector2( -40, 180 )
+
+[connection signal="deathSignal" from="Player/KinematicBody2D" to="UI/Node2D/TextureProgress" method="_on_KinematicBody2D_deathSignal"]
 
 [connection signal="hitSignal" from="Player/KinematicBody2D" to="HitSound" method="_on_KinematicBody2D_hitSignal"]
 
-[connection signal="staminaSignal" from="Player/KinematicBody2D" to="UI/Node2D/TextureProgress" method="_on_KinematicBody2D_staminaSignal"]
+[connection signal="hitSignal" from="Player/KinematicBody2D" to="UI/Node2D/TextureProgress" method="_on_KinematicBody2D_hitSignal"]
 
 [connection signal="staminaSignal" from="Player/KinematicBody2D" to="HitSound" method="_on_KinematicBody2D_staminaSignal"]
+
+[connection signal="staminaSignal" from="Player/KinematicBody2D" to="UI/Node2D/TextureProgress" method="_on_KinematicBody2D_staminaSignal"]
 
 
 [editable path="Obstacle"]
