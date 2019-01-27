@@ -6,7 +6,6 @@ export (int) var speed = 2
 
 var velocity = Vector2()
 var attackMode = false
-var paused = true
 
 func get_input():
 	velocity = Vector2()
@@ -15,18 +14,15 @@ func get_input():
 	#print(velocity)
 
 func _physics_process(delta):
-	if (!paused):
-		if (attackMode):
-			get_input()
-			move_and_collide(velocity *speed)
-		
+	if (attackMode):
+		get_input()
+		move_and_collide(velocity *speed)
 
 func _on_SpikeyBoyArea_body_entered(body):
 	if(body.is_in_group("player")):
 		print ("In")
 		attackMode = true
 		speed = chaseSpeed
-
 
 func _on_SpikeyBoyArea_body_exited(body):
 	if(body.is_in_group("player")):
