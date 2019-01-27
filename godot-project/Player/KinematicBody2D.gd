@@ -13,6 +13,7 @@ signal hitSignal
 
 onready var startTime = OS.get_ticks_msec()
 
+
 func _ready():
 	joypad_vec = Vector2(0,0)
 	paused = true
@@ -25,10 +26,18 @@ func _process(delta):
 		emit_signal("staminaSignal", get_parent().stamina)
 		print (startTime)
 
+	# if (not in home):
+	if(get_parent().healing and get_parent().stamina < 100):
+		get_parent().stamina += 0.08
+		emit_signal("staminaSignal", get_parent().stamina)
+	if(!get_parent().healing):
+		get_parent().stamina -= 0.01
+		emit_signal("staminaSignal", get_parent().stamina)
+		
+
 func _handleCollision(collision_info):
 	print(collision_info.collider)
 	joypad_vec = joypad_vec.bounce(collision_info.normal)
-	
 	
 	if ((OS.get_ticks_msec() - startTime) > 500.0):
 		startTime = OS.get_ticks_msec()	
@@ -53,7 +62,21 @@ func _physics_process(delta):
 		# this means the player can speed up or go back to a slower speed
 		if newjoypad_vec.length() > JOYPAD_DEADZONE:
 			joypad_vec = newjoypad_vec
+
 	
+		# Keyboard controls
+		if (Input.is_key_pressed(KEY_A)): 
+			joypad_vec.x = -1
+		if (Input.is_key_pressed(KEY_D)): 
+			joypad_vec.x = 1
+		if (Input.is_key_pressed(KEY_W)): 
+			joypad_vec.y = -1
+		if (Input.is_key_pressed(KEY_S)): 
+			joypad_vec.y = 1
+
+		if newjoypad_vec.length() > JOYPAD_DEADZONE:
+			joypad_vec = newjoypad_vec
+
 		var collision_info = move_and_collide(joypad_vec * delta*MOTION_SPEED)
 		if (collision_info != null):
 			_handleCollision(collision_info)
