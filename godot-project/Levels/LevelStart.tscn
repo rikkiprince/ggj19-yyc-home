@@ -3,7 +3,7 @@
 [ext_resource path="res://PowerUp/PowerUp.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Obstacle.tscn" type="PackedScene" id=2]
 
-[node name="LevelStart" type="Node2D" index="0"]
+[node name="LevelStart" type="Node2D"]
 
 position = Vector2( 0.807068, 0 )
 
