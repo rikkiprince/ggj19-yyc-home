@@ -49,7 +49,7 @@ _sections_unfolded = [ "Transform" ]
 
 frames = SubResource( 1 )
 animation = "default"
-frame = 22
+frame = 14
 playing = true
 
 [node name="Area2D" type="Area2D" parent="." index="2"]
