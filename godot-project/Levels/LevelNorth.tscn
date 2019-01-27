@@ -60,7 +60,7 @@ position = Vector2( -500, 140 )
 
 [node name="AnimatedSprite" parent="BlinkyBoy" index="1"]
 
-frame = 3
+frame = 19
 
 [node name="Area2D" parent="BlinkyBoy" index="2"]
 
@@ -88,7 +88,7 @@ scale = Vector2( 1, -1 )
 
 [node name="AnimatedSprite" parent="BlinkyBoy2" index="1"]
 
-frame = 3
+frame = 19
 
 [node name="CollisionShape2D" parent="BlinkyBoy2/Area2D" index="0"]
 
