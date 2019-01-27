@@ -9,13 +9,13 @@
 [ext_resource path="res://Enemies/AstroidBelt/tile017.png" type="Texture" id=7]
 [ext_resource path="res://Enemies/AstroidBelt/tile011.png" type="Texture" id=8]
 
-[sub_resource type="CapsuleShape2D" id=2]
+[sub_resource type="CapsuleShape2D" id=1]
 
 custom_solver_bias = 0.0
 radius = 6.29032
 height = 1.93954
 
-[sub_resource type="CircleShape2D" id=1]
+[sub_resource type="CircleShape2D" id=2]
 
 custom_solver_bias = 0.0
 radius = 10.0
@@ -37,7 +37,7 @@ collision/safe_margin = 0.08
 
 position = Vector2( -3.49827, 0.613634 )
 scale = Vector2( 4.39151, 4.53318 )
-shape = SubResource( 2 )
+shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="KinematicBody2D" index="1"]
 
@@ -58,7 +58,7 @@ collision/safe_margin = 0.08
 
 position = Vector2( -3.49827, 0.613634 )
 scale = Vector2( 4.39151, 4.53318 )
-shape = SubResource( 1 )
+shape = SubResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="KinematicBody2D2" index="1"]
 
@@ -77,7 +77,7 @@ collision/safe_margin = 0.08
 
 position = Vector2( -3.49827, 0.613634 )
 scale = Vector2( 4.39151, 4.53318 )
-shape = SubResource( 1 )
+shape = SubResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="KinematicBody2D3" index="1"]
 
@@ -96,7 +96,7 @@ collision/safe_margin = 0.08
 
 position = Vector2( -3.49827, 0.613634 )
 scale = Vector2( 4.39151, 4.53318 )
-shape = SubResource( 1 )
+shape = SubResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="KinematicBody2D4" index="1"]
 
@@ -115,7 +115,7 @@ collision/safe_margin = 0.08
 
 position = Vector2( -3.49827, 0.613634 )
 scale = Vector2( 4.39151, 4.53318 )
-shape = SubResource( 1 )
+shape = SubResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="KinematicBody2D5" index="1"]
 
@@ -135,7 +135,7 @@ collision/safe_margin = 0.08
 
 position = Vector2( -3.49827, 0.613634 )
 scale = Vector2( 4.39151, 4.53318 )
-shape = SubResource( 1 )
+shape = SubResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="KinematicBody2D6" index="1"]
 
@@ -154,7 +154,7 @@ collision/safe_margin = 0.08
 
 position = Vector2( -3.49827, 0.613634 )
 scale = Vector2( 4.39151, 4.53318 )
-shape = SubResource( 1 )
+shape = SubResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="KinematicBody2D7" index="1"]
 
