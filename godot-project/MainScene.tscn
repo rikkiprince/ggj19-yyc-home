@@ -43,7 +43,6 @@ _sections_unfolded = [ "Z Index" ]
 
 [node name="UI" type="CanvasLayer" parent="." index="3"]
 
-editor/display_folded = true
 layer = 1
 offset = Vector2( 0, 0 )
 rotation = 0.0

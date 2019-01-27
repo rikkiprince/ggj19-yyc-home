@@ -8,7 +8,7 @@
 [ext_resource path="res://SplashScreen/KeyboardAnim.gd" type="Script" id=6]
 [ext_resource path="res://SplashScreen/pause.png" type="Texture" id=7]
 
-[node name="SplashScreen" type="Node2D" index="0"]
+[node name="SplashScreen" type="Node2D"]
 
 pause_mode = 2
 script = ExtResource( 1 )
@@ -76,6 +76,24 @@ _sections_unfolded = [ "Animation", "Transform" ]
 
 position = Vector2( 350, -100 )
 texture = ExtResource( 7 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="PowerUpInd" type="Polygon2D" parent="." index="5"]
+
+position = Vector2( 75, -150 )
+scale = Vector2( 2, 2 )
+polygon = PoolVector2Array( 0, 10, -10, 0, 0, -10, 10, 0 )
+uv = PoolVector2Array(  )
+color = Color( 1, 1, 1, 1 )
+vertex_colors = PoolColorArray(  )
+offset = Vector2( 0, 0 )
+antialiased = false
+texture = null
+texture_offset = Vector2( 0, 0 )
+texture_scale = Vector2( 1, 1 )
+texture_rotation_degrees = 0.0
+invert_enable = false
+invert_border = 100.0
 _sections_unfolded = [ "Transform" ]
 
 
