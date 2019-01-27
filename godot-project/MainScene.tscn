@@ -21,7 +21,7 @@
 [ext_resource path="res://Levels/LevelEast.tscn" type="PackedScene" id=19]
 [ext_resource path="res://Levels/LevelSouth.tscn" type="PackedScene" id=20]
 
-[node name="MainScene" type="Node" index="0"]
+[node name="MainScene" type="Node"]
 
 script = ExtResource( 1 )
 
@@ -39,6 +39,7 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="Player" parent="." index="2" instance=ExtResource( 4 )]
 
+editor/display_folded = true
 position = Vector2( 24.2927, -20.9801 )
 z_index = 1
 _sections_unfolded = [ "Z Index" ]

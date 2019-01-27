@@ -1,14 +1,15 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://SplashScreen/SplashScreen.gd" type="Script" id=1]
-[ext_resource path="res://SplashScreen/Title.png" type="Texture" id=2]
+[ext_resource path="res://SplashScreen/BunceTitle.png" type="Texture" id=2]
 [ext_resource path="res://SplashScreen/buttonstilesheet1.png" type="Texture" id=3]
 [ext_resource path="res://SplashScreen/Sprite.gd" type="Script" id=4]
 [ext_resource path="res://SplashScreen/keyboardanim1.png" type="Texture" id=5]
 [ext_resource path="res://SplashScreen/KeyboardAnim.gd" type="Script" id=6]
 [ext_resource path="res://SplashScreen/pause.png" type="Texture" id=7]
+[ext_resource path="res://SplashScreen/Credits.png" type="Texture" id=8]
 
-[node name="SplashScreen" type="Node2D"]
+[node name="SplashScreen" type="Node2D" index="0"]
 
 pause_mode = 2
 script = ExtResource( 1 )
@@ -76,6 +77,12 @@ _sections_unfolded = [ "Animation", "Transform" ]
 
 position = Vector2( 350, -100 )
 texture = ExtResource( 7 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Sprite" type="Sprite" parent="PauseMsg" index="0"]
+
+position = Vector2( 0, 275 )
+texture = ExtResource( 8 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="PowerUpInd" type="Polygon2D" parent="." index="5"]
