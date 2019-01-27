@@ -1,24 +1,23 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://MainScene.gd" type="Script" id=1]
 [ext_resource path="res://blurred-blurry-bokeh-220118.jpg" type="Texture" id=2]
 [ext_resource path="res://Home/Home.tscn" type="PackedScene" id=3]
 [ext_resource path="res://PowerUp/PowerUp.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Levels/LevelSouth.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Obstacle.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Player/Player.tscn" type="PackedScene" id=7]
-[ext_resource path="res://SplashScreen/SplashScreen.tscn" type="PackedScene" id=8]
-[ext_resource path="res://StaminaBar/energy_bar_bg.png" type="Texture" id=9]
-[ext_resource path="res://StaminaBar/energy_bar_fill.png" type="Texture" id=10]
-[ext_resource path="res://TextureProgress.gd" type="Script" id=11]
-[ext_resource path="res://Audio/ambient-guitar-music.ogg" type="AudioStream" id=12]
-[ext_resource path="res://Audio/hitObject.wav" type="AudioStream" id=13]
-[ext_resource path="res://HitSound.gd" type="Script" id=14]
-[ext_resource path="res://Audio/ItemPickUp.ogg" type="AudioStream" id=15]
-[ext_resource path="res://Audio/ItemDropOff.ogg" type="AudioStream" id=16]
-[ext_resource path="res://Levels/LevelWest.tscn" type="PackedScene" id=17]
-[ext_resource path="res://Levels/LevelNorth.tscn" type="PackedScene" id=18]
-[ext_resource path="res://Levels/LevelEast.tscn" type="PackedScene" id=19]
+[ext_resource path="res://Player/Player.tscn" type="PackedScene" id=6]
+[ext_resource path="res://StaminaBar/energy_bar_bg.png" type="Texture" id=7]
+[ext_resource path="res://StaminaBar/energy_bar_fill.png" type="Texture" id=8]
+[ext_resource path="res://TextureProgress.gd" type="Script" id=9]
+[ext_resource path="res://Audio/ambient-guitar-music.ogg" type="AudioStream" id=10]
+[ext_resource path="res://Audio/hitObject.wav" type="AudioStream" id=11]
+[ext_resource path="res://HitSound.gd" type="Script" id=12]
+[ext_resource path="res://Audio/ItemPickUp.ogg" type="AudioStream" id=13]
+[ext_resource path="res://Audio/ItemDropOff.ogg" type="AudioStream" id=14]
+[ext_resource path="res://Levels/LevelWest.tscn" type="PackedScene" id=15]
+[ext_resource path="res://Levels/LevelNorth.tscn" type="PackedScene" id=16]
+[ext_resource path="res://Levels/LevelEast.tscn" type="PackedScene" id=17]
+[ext_resource path="res://SplashScreen/SplashScreen.tscn" type="PackedScene" id=18]
 
 [node name="MainScene" type="Node"]
 
@@ -55,22 +54,19 @@ _sections_unfolded = [ "Transform" ]
 
 position = Vector2( -40, 460 )
 
-[node name="Obstacle" parent="." index="6" instance=ExtResource( 6 )]
-
-editor/display_folded = true
-position = Vector2( 245.276, 267.357 )
-scale = Vector2( 2, 2 )
-_sections_unfolded = [ "Transform" ]
-
-[node name="Player" parent="." index="7" instance=ExtResource( 7 )]
+[node name="Player" parent="." index="6" instance=ExtResource( 6 )]
 
 position = Vector2( -49.3312, 51.0264 )
+
+[node name="KinematicBody2D" parent="Player" index="0"]
+
+editor/display_folded = true
 
 [node name="Camera2D" parent="Player/KinematicBody2D" index="1"]
 
 _sections_unfolded = [ "Drag Margin", "Editor", "Limit" ]
 
-[node name="UI" type="CanvasLayer" parent="." index="8"]
+[node name="UI" type="CanvasLayer" parent="." index="7"]
 
 layer = 1
 offset = Vector2( 0, 0 )
@@ -78,11 +74,7 @@ rotation = 0.0
 scale = Vector2( 1, 1 )
 transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 
-[node name="SplashScreen" parent="UI" index="0" instance=ExtResource( 8 )]
-
-position = Vector2( 320, 380 )
-
-[node name="Node2D" type="Node2D" parent="UI" index="1"]
+[node name="Node2D" type="Node2D" parent="UI" index="0"]
 
 position = Vector2( 400, 35 )
 scale = Vector2( 0.25, 1 )
@@ -111,26 +103,39 @@ page = 0.0
 value = 25.0
 exp_edit = false
 rounded = false
-texture_under = ExtResource( 9 )
+texture_under = ExtResource( 7 )
 texture_over = null
-texture_progress = ExtResource( 10 )
+texture_progress = ExtResource( 8 )
 radial_fill_degrees = 360.0
 radial_center_offset = Vector2( 0, 0 )
 nine_patch_stretch = false
-script = ExtResource( 11 )
+script = ExtResource( 9 )
 
-[node name="Music" type="AudioStreamPlayer" parent="." index="9"]
+[node name="Music" type="AudioStreamPlayer" parent="." index="8"]
 
-stream = ExtResource( 12 )
+stream = ExtResource( 10 )
 volume_db = -10.0
 pitch_scale = 1.0
 autoplay = true
 mix_target = 0
 bus = "Master"
 
-[node name="HitSound" type="AudioStreamPlayer2D" parent="." index="10"]
+[node name="HitSound" type="AudioStreamPlayer2D" parent="." index="9"]
 
 position = Vector2( 22.0002, 67.6184 )
+stream = ExtResource( 11 )
+volume_db = 0.0
+pitch_scale = 1.0
+autoplay = false
+max_distance = 2000.0
+attenuation = 1.0
+bus = "Master"
+area_mask = 1
+script = ExtResource( 12 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="PickUpSound" type="AudioStreamPlayer2D" parent="." index="10"]
+
 stream = ExtResource( 13 )
 volume_db = 0.0
 pitch_scale = 1.0
@@ -139,12 +144,10 @@ max_distance = 2000.0
 attenuation = 1.0
 bus = "Master"
 area_mask = 1
-script = ExtResource( 14 )
-_sections_unfolded = [ "Transform" ]
 
-[node name="PickUpSound" type="AudioStreamPlayer2D" parent="." index="11"]
+[node name="DropSound" type="AudioStreamPlayer2D" parent="." index="11"]
 
-stream = ExtResource( 15 )
+stream = ExtResource( 14 )
 volume_db = 0.0
 pitch_scale = 1.0
 autoplay = false
@@ -153,41 +156,33 @@ attenuation = 1.0
 bus = "Master"
 area_mask = 1
 
-[node name="DropSound" type="AudioStreamPlayer2D" parent="." index="12"]
-
-stream = ExtResource( 16 )
-volume_db = 0.0
-pitch_scale = 1.0
-autoplay = false
-max_distance = 2000.0
-attenuation = 1.0
-bus = "Master"
-area_mask = 1
-
-[node name="LevelWest" parent="." index="13" instance=ExtResource( 17 )]
+[node name="LevelWest" parent="." index="12" instance=ExtResource( 15 )]
 
 position = Vector2( -1232.99, 25.1631 )
 
-[node name="LevelNorth" parent="." index="14" instance=ExtResource( 18 )]
+[node name="LevelNorth" parent="." index="13" instance=ExtResource( 16 )]
 
 position = Vector2( -389.399, -813.67 )
 
-[node name="LevelEast" parent="." index="15" instance=ExtResource( 19 )]
+[node name="LevelEast" parent="." index="14" instance=ExtResource( 17 )]
 
-position = Vector2( 1170, -20 )
+position = Vector2( 1160, -20 )
+
+[node name="SplashScreen" parent="." index="15" instance=ExtResource( 18 )]
+
+position = Vector2( -40, 180 )
 
 [connection signal="change_max_stamina_bar" from="Player" to="UI/Node2D/TextureProgress" method="_on_Player_change_max_stamina_bar"]
 
 [connection signal="deathSignal" from="Player/KinematicBody2D" to="UI/Node2D/TextureProgress" method="_on_KinematicBody2D_deathSignal"]
 
-[connection signal="hitSignal" from="Player/KinematicBody2D" to="UI/Node2D/TextureProgress" method="_on_KinematicBody2D_hitSignal"]
-
 [connection signal="hitSignal" from="Player/KinematicBody2D" to="HitSound" method="_on_KinematicBody2D_hitSignal"]
 
-[connection signal="staminaSignal" from="Player/KinematicBody2D" to="UI/Node2D/TextureProgress" method="_on_KinematicBody2D_staminaSignal"]
+[connection signal="hitSignal" from="Player/KinematicBody2D" to="UI/Node2D/TextureProgress" method="_on_KinematicBody2D_hitSignal"]
 
 [connection signal="staminaSignal" from="Player/KinematicBody2D" to="HitSound" method="_on_KinematicBody2D_staminaSignal"]
 
+[connection signal="staminaSignal" from="Player/KinematicBody2D" to="UI/Node2D/TextureProgress" method="_on_KinematicBody2D_staminaSignal"]
 
-[editable path="Obstacle"]
+
 [editable path="Player"]
