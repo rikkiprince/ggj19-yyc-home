@@ -21,7 +21,6 @@ func _ready():
 func _process(delta):
 	# if (not in home):
 	get_parent().stamina -= 0.10
-	print(get_parent().stamina)
 	emit_signal("staminaSignal", get_parent().stamina)
 
 

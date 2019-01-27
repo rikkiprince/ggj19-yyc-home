@@ -2,7 +2,7 @@ extends Node2D
 
 # class member variables go here, for example:
 
-var rotation_speed = 0.2
+var rotation_speed = 0.5
 
 func _ready():
 	# Called when the node is added to the scene for the first time.
