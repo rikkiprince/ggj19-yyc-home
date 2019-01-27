@@ -6,17 +6,18 @@
 [ext_resource path="res://SplashScreen/keyboardanim1.png" type="Texture" id=4]
 [ext_resource path="res://SplashScreen/KeyboardAnim.gd" type="Script" id=5]
 
-[node name="SplashScreen" type="Node2D" index="0"]
+[node name="SplashScreen" type="Node2D"]
 
+pause_mode = 2
 script = ExtResource( 1 )
-_sections_unfolded = [ "Transform" ]
+_sections_unfolded = [ "Pause", "Transform" ]
 hidden = false
 
 [node name="Polygon2D" type="Polygon2D" parent="." index="0"]
 
 polygon = PoolVector2Array( 200, -50, 200, 50, -200, 50, -200, -50 )
 uv = PoolVector2Array(  )
-color = Color( 0.193329, 0.707031, 0.261555, 0.0773333 )
+color = Color( 0.193329, 0.707031, 0.261555, 0.359098 )
 vertex_colors = PoolColorArray(  )
 offset = Vector2( 0, 0 )
 antialiased = false
