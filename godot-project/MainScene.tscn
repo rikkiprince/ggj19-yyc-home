@@ -1,23 +1,24 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://MainScene.gd" type="Script" id=1]
 [ext_resource path="res://blurred-blurry-bokeh-220118.jpg" type="Texture" id=2]
-[ext_resource path="res://Home/Home.tscn" type="PackedScene" id=3]
-[ext_resource path="res://PowerUp/PowerUp.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Enemies/SpikeyBoy.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Obstacle.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Player/Player.tscn" type="PackedScene" id=7]
-[ext_resource path="res://StaminaBar/energy_bar_bg.png" type="Texture" id=8]
-[ext_resource path="res://StaminaBar/energy_bar_fill.png" type="Texture" id=9]
-[ext_resource path="res://TextureProgress.gd" type="Script" id=10]
-[ext_resource path="res://Audio/ambient-guitar-music.ogg" type="AudioStream" id=11]
-[ext_resource path="res://Audio/hitObject.wav" type="AudioStream" id=12]
-[ext_resource path="res://HitSound.gd" type="Script" id=13]
+[ext_resource path="res://Enemies/AstroidBelt/AstroidBelt.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Home/Home.tscn" type="PackedScene" id=4]
+[ext_resource path="res://PowerUp/PowerUp.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Enemies/SpikeyBoy.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Obstacle.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Player/Player.tscn" type="PackedScene" id=8]
+[ext_resource path="res://StaminaBar/energy_bar_bg.png" type="Texture" id=9]
+[ext_resource path="res://StaminaBar/energy_bar_fill.png" type="Texture" id=10]
+[ext_resource path="res://TextureProgress.gd" type="Script" id=11]
+[ext_resource path="res://Audio/ambient-guitar-music.ogg" type="AudioStream" id=12]
+[ext_resource path="res://Audio/hitObject.wav" type="AudioStream" id=13]
+[ext_resource path="res://HitSound.gd" type="Script" id=14]
 
-[sub_resource type="CircleShape2D" id=2]
+[sub_resource type="CircleShape2D" id=1]
 
 custom_solver_bias = 0.0
-radius = 10.0
+radius = 58.5364
 
 [node name="MainScene" type="Node" index="0"]
 
@@ -29,59 +30,66 @@ position = Vector2( 0, 0.0246429 )
 texture = ExtResource( 2 )
 _sections_unfolded = [ "Transform", "Z Index" ]
 
-[node name="Home" parent="." index="1" instance=ExtResource( 3 )]
+[node name="AstroidBelt" parent="." index="1" instance=ExtResource( 3 )]
+
+position = Vector2( -299.231, -223.049 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Home" parent="." index="2" instance=ExtResource( 4 )]
 
 editor/display_folded = true
 position = Vector2( -50, 50 )
 scale = Vector2( 2, 2 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="PowerUp" parent="." index="2" instance=ExtResource( 4 )]
+[node name="Area2D" type="Area2D" parent="Home" index="0"]
+
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Home/Area2D" index="0"]
+
+modulate = Color( 0.282288, 0.976563, 0, 0.464118 )
+self_modulate = Color( 0.507813, 0.251923, 0.251923, 1 )
+light_mask = 49169
+use_parent_material = true
+position = Vector2( -0.256115, -0.12524 )
+scale = Vector2( 0.266741, 0.276793 )
+shape = SubResource( 1 )
+_sections_unfolded = [ "Material", "Transform", "Visibility" ]
+
+[node name="PowerUp" parent="." index="3" instance=ExtResource( 5 )]
 
 position = Vector2( 100, 100 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="SpikeyBoy" parent="." index="3" instance=ExtResource( 5 )]
+[node name="SpikeyBoy" parent="." index="4" instance=ExtResource( 6 )]
 
-position = Vector2( 370.278, -310.97 )
-scale = Vector2( 2, 2 )
-input_pickable = false
-collision_layer = 1
-collision_mask = 1
-collision/safe_margin = 0.08
-script = ExtResource( 5 )
-_sections_unfolded = [ "Transform", "collision" ]
-speed = 2
+position = Vector2( 454.262, -202.576 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="KinematicBody2D" index="0"]
-
-shape = SubResource( 2 )
-_sections_unfolded = [ "Transform" ]
-
-[node name="Sprite" type="Sprite" parent="KinematicBody2D/CollisionShape2D" index="0"]
-
-scale = Vector2( 0.0355808, 0.0388347 )
-texture = ExtResource( 6 )
-script = ExtResource( 7 )
-_sections_unfolded = [ "Animation", "Offset", "Transform", "Z Index" ]
-
-[node name="Obstacle" parent="." index="4" instance=ExtResource( 8 )]
+[node name="Obstacle" parent="." index="5" instance=ExtResource( 7 )]
 
 editor/display_folded = true
 position = Vector2( -5.69666, -64.6392 )
 scale = Vector2( 2, 2 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="PowerUp2" parent="." index="5" instance=ExtResource( 4 )]
+[node name="PowerUp2" parent="." index="6" instance=ExtResource( 5 )]
 
 position = Vector2( -299.015, -224.939 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="Player" parent="." index="6" instance=ExtResource( 7 )]
+[node name="Player" parent="." index="7" instance=ExtResource( 8 )]
 
-position = Vector2( 73.4419, 31.3827 )
+editor/display_folded = true
+position = Vector2( -49.3312, 51.0264 )
 
-[node name="UI" type="CanvasLayer" parent="." index="7"]
+[node name="UI" type="CanvasLayer" parent="." index="8"]
 
 editor/display_folded = true
 layer = 1
@@ -113,28 +121,28 @@ page = 0.0
 value = 100.0
 exp_edit = false
 rounded = false
-texture_under = ExtResource( 8 )
+texture_under = ExtResource( 9 )
 texture_over = null
-texture_progress = ExtResource( 9 )
+texture_progress = ExtResource( 10 )
 radial_fill_degrees = 360.0
 radial_center_offset = Vector2( 0, 0 )
 nine_patch_stretch = false
-script = ExtResource( 10 )
+script = ExtResource( 11 )
 _sections_unfolded = [ "Margin" ]
 
-[node name="Music" type="AudioStreamPlayer" parent="." index="8"]
+[node name="Music" type="AudioStreamPlayer" parent="." index="9"]
 
-stream = ExtResource( 11 )
+stream = ExtResource( 12 )
 volume_db = -10.0
 pitch_scale = 1.0
 autoplay = true
 mix_target = 0
 bus = "Master"
 
-[node name="HitSound" type="AudioStreamPlayer2D" parent="." index="9"]
+[node name="HitSound" type="AudioStreamPlayer2D" parent="." index="10"]
 
 position = Vector2( 22.0002, 67.6184 )
-stream = ExtResource( 12 )
+stream = ExtResource( 13 )
 volume_db = 0.0
 pitch_scale = 1.0
 autoplay = false
@@ -142,7 +150,7 @@ max_distance = 2000.0
 attenuation = 1.0
 bus = "Master"
 area_mask = 1
-script = ExtResource( 13 )
+script = ExtResource( 14 )
 _sections_unfolded = [ "Transform" ]
 
 [connection signal="body_entered" from="Home/Area2D" to="Player" method="_on_Area2D_body_entered"]

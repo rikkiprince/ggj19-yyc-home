@@ -14,7 +14,7 @@ radius = 10.0
 custom_solver_bias = 0.0
 radius = 10.0
 
-[node name="SpikeyBoy" type="KinematicBody2D" index="0"]
+[node name="SpikeyBoy" type="KinematicBody2D"]
 
 scale = Vector2( 2, 2 )
 input_pickable = false
@@ -34,7 +34,7 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="Sprite" type="Sprite" parent="CollisionShape2D" index="0"]
 
-position = Vector2( 0.161758, 0.613869 )
+position = Vector2( 0.161766, 0 )
 scale = Vector2( 0.0355808, 0.0388347 )
 texture = ExtResource( 2 )
 script = ExtResource( 3 )

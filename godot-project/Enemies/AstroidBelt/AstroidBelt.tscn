@@ -1,0 +1,163 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://Enemies/AstroidBelt/AstroidBelt.gd" type="Script" id=1]
+[ext_resource path="res://Enemies/AstroidBelt/tile000.png" type="Texture" id=2]
+[ext_resource path="res://Enemies/AstroidBelt/tile006.png" type="Texture" id=3]
+[ext_resource path="res://Enemies/AstroidBelt/tile012.png" type="Texture" id=4]
+[ext_resource path="res://Enemies/AstroidBelt/tile003.png" type="Texture" id=5]
+[ext_resource path="res://Enemies/AstroidBelt/tile020.png" type="Texture" id=6]
+[ext_resource path="res://Enemies/AstroidBelt/tile017.png" type="Texture" id=7]
+[ext_resource path="res://Enemies/AstroidBelt/tile011.png" type="Texture" id=8]
+
+[sub_resource type="CapsuleShape2D" id=2]
+
+custom_solver_bias = 0.0
+radius = 6.29032
+height = 1.93954
+
+[sub_resource type="CircleShape2D" id=1]
+
+custom_solver_bias = 0.0
+radius = 10.0
+
+[node name="AstroidBelt" type="Node2D"]
+
+script = ExtResource( 1 )
+
+[node name="KinematicBody2D" type="KinematicBody2D" parent="." index="0"]
+
+editor/display_folded = true
+position = Vector2( -203.804, -74.8919 )
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+collision/safe_margin = 0.08
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KinematicBody2D" index="0"]
+
+position = Vector2( -3.49827, 0.613634 )
+scale = Vector2( 4.39151, 4.53318 )
+shape = SubResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="KinematicBody2D" index="1"]
+
+scale = Vector2( 0.6, 0.8 )
+texture = ExtResource( 2 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="KinematicBody2D2" type="KinematicBody2D" parent="." index="1"]
+
+editor/display_folded = true
+position = Vector2( -74.8917, 57.7035 )
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+collision/safe_margin = 0.08
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KinematicBody2D2" index="0"]
+
+position = Vector2( -3.49827, 0.613634 )
+scale = Vector2( 4.39151, 4.53318 )
+shape = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="KinematicBody2D2" index="1"]
+
+texture = ExtResource( 3 )
+
+[node name="KinematicBody2D3" type="KinematicBody2D" parent="." index="2"]
+
+editor/display_folded = true
+position = Vector2( -6.13864, 116.635 )
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+collision/safe_margin = 0.08
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KinematicBody2D3" index="0"]
+
+position = Vector2( -3.49827, 0.613634 )
+scale = Vector2( 4.39151, 4.53318 )
+shape = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="KinematicBody2D3" index="1"]
+
+texture = ExtResource( 4 )
+
+[node name="KinematicBody2D4" type="KinematicBody2D" parent="." index="3"]
+
+editor/display_folded = true
+position = Vector2( 81.0306, 72.4364 )
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+collision/safe_margin = 0.08
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KinematicBody2D4" index="0"]
+
+position = Vector2( -3.49827, 0.613634 )
+scale = Vector2( 4.39151, 4.53318 )
+shape = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="KinematicBody2D4" index="1"]
+
+texture = ExtResource( 5 )
+
+[node name="KinematicBody2D5" type="KinematicBody2D" parent="." index="4"]
+
+editor/display_folded = true
+position = Vector2( 98.2189, -68.7532 )
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+collision/safe_margin = 0.08
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KinematicBody2D5" index="0"]
+
+position = Vector2( -3.49827, 0.613634 )
+scale = Vector2( 4.39151, 4.53318 )
+shape = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="KinematicBody2D5" index="1"]
+
+position = Vector2( 3.68323, 1.22772 )
+texture = ExtResource( 6 )
+
+[node name="KinematicBody2D6" type="KinematicBody2D" parent="." index="5"]
+
+editor/display_folded = true
+position = Vector2( -41.7429, -106.813 )
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+collision/safe_margin = 0.08
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KinematicBody2D6" index="0"]
+
+position = Vector2( -3.49827, 0.613634 )
+scale = Vector2( 4.39151, 4.53318 )
+shape = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="KinematicBody2D6" index="1"]
+
+texture = ExtResource( 7 )
+
+[node name="KinematicBody2D7" type="KinematicBody2D" parent="." index="6"]
+
+editor/display_folded = true
+position = Vector2( 40.5154, -141.19 )
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+collision/safe_margin = 0.08
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KinematicBody2D7" index="0"]
+
+position = Vector2( -3.49827, 0.613634 )
+scale = Vector2( 4.39151, 4.53318 )
+shape = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="KinematicBody2D7" index="1"]
+
+texture = ExtResource( 8 )
+
+
