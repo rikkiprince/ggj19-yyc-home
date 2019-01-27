@@ -4,7 +4,7 @@ var gameStarted
 
 func _ready():
 	gameStarted = false
-	setGamePause(true)	
+	setGamePause(true)
 	# show splash screen
 
 func setGamePause(pause):
@@ -15,16 +15,16 @@ func setGamePause(pause):
 		if k.name != "Background" && k.name != "UI" && k.name != "Music" && k.name != "HitSound":
 			k.set_visible(!pause)
 	get_node("Player").get_node("KinematicBody2D").paused = pause
+	get_node("SpikeyBoy").paused = pause
 	if (!pause):
 		gameStarted = true
 	
 func _process(delta):
 	# Just a quick helper to close the game for now
 	# Should pause and open a menu in the future
-	if Input.is_key_pressed(KEY_ESCAPE) || Input.is_action_pressed("ui_select"):
-		#get_tree().quit()
-		pass
-	if Input.is_key_pressed(KEY_SPACE) || Input.is_action_pressed("ui_accept"):
+	if Input.is_action_pressed("ui_quit"):
+		get_tree().quit()
+	if Input.is_action_pressed("ui_accept"):
 		setGamePause(false)
 	if Input.is_action_pressed("ui_cancel"):
 		setGamePause(true)
