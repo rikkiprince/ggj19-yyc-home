@@ -18,6 +18,10 @@ func _ready():
 func startScreenVisible(value):
 	get_parent().get_parent().get_node("UI/Node2D").visible = value
 	get_parent().get_parent().get_node("LevelStart").visible = value
+	get_parent().get_parent().get_node("LevelWest").visible = value
+	get_parent().get_parent().get_node("LevelEast").visible = value
+	get_parent().get_parent().get_node("LevelNorth").visible = value
+	get_parent().get_parent().get_node("LevelSouth").visible = value
 
 func tick():
 	get_node("ButtonsAnim").nextFrame()
