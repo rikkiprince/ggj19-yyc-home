@@ -8,7 +8,7 @@ func _ready():
 	# show splash screen
 
 func setGamePause(pause):
-	get_node("UI/TextureProgress").set_visible(!pause)
+	get_node("UI/Node2D/TextureProgress").set_visible(!pause)
 	var kids = get_children()
 	for k in kids:
 		# total hack, need to check if k.isNode instead or whatever

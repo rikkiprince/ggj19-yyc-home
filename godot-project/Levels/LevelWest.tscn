@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Enemies/StarBoy/StarBoy.tscn" type="PackedScene" id=1]
+
+[node name="LevelWest" type="Node2D" index="0"]
+
+[node name="StarBoy" parent="." index="0" instance=ExtResource( 1 )]
+
+position = Vector2( -138.397, -56.6169 )
+
+[node name="StarBoy2" parent="." index="1" instance=ExtResource( 1 )]
+
+position = Vector2( -125.815, 119.525 )
+
+[node name="StarBoy3" parent="." index="2" instance=ExtResource( 1 )]
+
+
