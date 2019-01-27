@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://MainScene.gd" type="Script" id=1]
 [ext_resource path="res://blurred-blurry-bokeh-220118.jpg" type="Texture" id=2]
@@ -14,14 +14,11 @@
 [ext_resource path="res://Audio/ambient-guitar-music.ogg" type="AudioStream" id=12]
 [ext_resource path="res://Audio/hitObject.wav" type="AudioStream" id=13]
 [ext_resource path="res://HitSound.gd" type="Script" id=14]
-[ext_resource path="res://Enemies/StarBoy/StarBoy.tscn" type="PackedScene" id=15]
+[ext_resource path="res://Audio/ItemPickUp.ogg" type="AudioStream" id=15]
+[ext_resource path="res://Audio/ItemDropOff.ogg" type="AudioStream" id=16]
+[ext_resource path="res://Enemies/StarBoy/StarBoy.tscn" type="PackedScene" id=17]
 
-[sub_resource type="CircleShape2D" id=1]
-
-custom_solver_bias = 0.0
-radius = 58.5364
-
-[node name="MainScene" type="Node"]
+[node name="MainScene" type="Node" index="0"]
 
 script = ExtResource( 1 )
 
@@ -42,27 +39,6 @@ editor/display_folded = true
 position = Vector2( -50, 50 )
 scale = Vector2( 2, 2 )
 _sections_unfolded = [ "Transform" ]
-
-[node name="Area2D" type="Area2D" parent="Home" index="0"]
-
-input_pickable = true
-gravity_vec = Vector2( 0, 1 )
-gravity = 98.0
-linear_damp = 0.1
-angular_damp = 1.0
-audio_bus_override = false
-audio_bus_name = "Master"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Home/Area2D" index="0"]
-
-modulate = Color( 0.282288, 0.976563, 0, 0.464118 )
-self_modulate = Color( 0.507813, 0.251923, 0.251923, 1 )
-light_mask = 49169
-use_parent_material = true
-position = Vector2( -0.256115, -0.12524 )
-scale = Vector2( 0.266741, 0.276793 )
-shape = SubResource( 1 )
-_sections_unfolded = [ "Material", "Transform", "Visibility" ]
 
 [node name="PowerUp" parent="." index="3" instance=ExtResource( 5 )]
 
@@ -153,21 +129,39 @@ area_mask = 1
 script = ExtResource( 14 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="StarBoy" parent="." index="11" instance=ExtResource( 15 )]
+[node name="PickUpSound" type="AudioStreamPlayer2D" parent="." index="11"]
+
+stream = ExtResource( 15 )
+volume_db = 0.0
+pitch_scale = 1.0
+autoplay = false
+max_distance = 2000.0
+attenuation = 1.0
+bus = "Master"
+area_mask = 1
+
+[node name="DropSound" type="AudioStreamPlayer2D" parent="." index="12"]
+
+stream = ExtResource( 16 )
+volume_db = 0.0
+pitch_scale = 1.0
+autoplay = false
+max_distance = 2000.0
+attenuation = 1.0
+bus = "Master"
+area_mask = 1
+
+[node name="StarBoy" parent="." index="13" instance=ExtResource( 17 )]
 
 position = Vector2( -581.946, 211.17 )
 
-[node name="StarBoy2" parent="." index="12" instance=ExtResource( 15 )]
+[node name="StarBoy2" parent="." index="14" instance=ExtResource( 17 )]
 
 position = Vector2( -457.945, 130.14 )
 
-[node name="StarBoy3" parent="." index="13" instance=ExtResource( 15 )]
+[node name="StarBoy3" parent="." index="15" instance=ExtResource( 17 )]
 
 position = Vector2( -612.64, 83.486 )
-
-[connection signal="body_entered" from="Home/Area2D" to="Player" method="_on_Area2D_body_entered"]
-
-[connection signal="body_exited" from="Home/Area2D" to="Player" method="_on_Area2D_body_exited"]
 
 [connection signal="deathSignal" from="Player/KinematicBody2D" to="UI/TextureProgress" method="_on_KinematicBody2D_deathSignal"]
 
@@ -180,6 +174,5 @@ position = Vector2( -612.64, 83.486 )
 [connection signal="staminaSignal" from="Player/KinematicBody2D" to="HitSound" method="_on_KinematicBody2D_staminaSignal"]
 
 
-[editable path="Home"]
 [editable path="Obstacle"]
 [editable path="Player"]
