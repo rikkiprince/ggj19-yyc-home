@@ -64,6 +64,7 @@ _sections_unfolded = [ "Transform" ]
 [node name="Player" parent="." index="7" instance=ExtResource( 7 )]
 
 position = Vector2( -49.3312, 51.0264 )
+max_stamina = 10
 
 [node name="Camera2D" parent="Player/KinematicBody2D" index="1"]
 
