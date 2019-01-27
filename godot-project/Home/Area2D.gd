@@ -1,7 +1,7 @@
 extends Area2D
 
 func _on_Area2D_body_entered(body):
-	if(body == get_node("../../Player/KinematicBody2D")):
+	if(body == get_tree().get_root().get_node("MainScene/Player/KinematicBody2D")):
 		# set the center of this home for player to glide towards
 		body.get_parent().center_of_home_vector = self.global_position
 		
