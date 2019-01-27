@@ -97,7 +97,7 @@ _sections_unfolded = [ "Margin" ]
 stream = ExtResource( 10 )
 volume_db = -10.0
 pitch_scale = 1.0
-autoplay = true
+autoplay = false
 mix_target = 0
 bus = "Master"
 
@@ -136,6 +136,10 @@ bus = "Master"
 area_mask = 1
 
 [connection signal="deathSignal" from="Player/KinematicBody2D" to="UI/TextureProgress" method="_on_KinematicBody2D_deathSignal"]
+
+[connection signal="hitSignal" from="Player/KinematicBody2D" to="HitSound" method="_on_KinematicBody2D_hitSignal"]
+
+[connection signal="hitSignal" from="Player/KinematicBody2D" to="UI/TextureProgress" method="_on_KinematicBody2D_hitSignal"]
 
 [connection signal="staminaSignal" from="Player/KinematicBody2D" to="HitSound" method="_on_KinematicBody2D_staminaSignal"]
 
