@@ -20,7 +20,7 @@
 [ext_resource path="res://Levels/LevelEast.tscn" type="PackedScene" id=18]
 [ext_resource path="res://SplashScreen/SplashScreen.tscn" type="PackedScene" id=19]
 
-[node name="MainScene" type="Node" index="0"]
+[node name="MainScene" type="Node"]
 
 script = ExtResource( 1 )
 
@@ -53,10 +53,11 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="LevelSouth" parent="." index="5" instance=ExtResource( 5 )]
 
-position = Vector2( -26.0177, 669.978 )
+position = Vector2( -40, 460 )
 
 [node name="Obstacle" parent="." index="6" instance=ExtResource( 6 )]
 
+editor/display_folded = true
 position = Vector2( 245.276, 267.357 )
 scale = Vector2( 2, 2 )
 _sections_unfolded = [ "Transform" ]
