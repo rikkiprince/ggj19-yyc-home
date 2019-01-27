@@ -30,6 +30,13 @@ func pick_up_object(object, type):
 	get_parent().get_node("PickUpSound").play()
 	return true
 
+func drop_object():
+	var temp = carried_objects
+	carried_objects = []
+	if(len(temp) > 0):
+		get_parent().get_node("DropSound").play()
+	return temp
+
 func _on_Area2D_body_entered(body):
 	print("Heal")
 	healing = true;
