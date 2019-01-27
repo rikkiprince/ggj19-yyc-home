@@ -21,6 +21,7 @@ func _on_Area2D_body_exited(body):
 	if(body == get_tree().get_root().get_node("MainScene/Player/KinematicBody2D")):
 		# ensure player isn't trying to glide back to center
 		body.get_parent().center_of_home_vector = null
+		body.get_parent().last_visited_home = get_parent()
 		
 		# initiate healing
 		print("STOP healing")

@@ -19,17 +19,13 @@ func _ready():
 
 # Drain a tiny bit of stamina
 func _process(delta):
-	# if (not in home):
-	get_parent().stamina -= 0.10
-	emit_signal("staminaSignal", get_parent().stamina)
-
-
-	# if (not in home):
-	if(get_parent().healing and get_parent().stamina < get_parent().max_stamina):
-		get_parent().stamina += 0.5
+	# if (in home):
+	if(get_parent().healing):
+		get_parent().stamina = min(get_parent().stamina + 0.5, get_parent().max_stamina)
 		emit_signal("staminaSignal", get_parent().stamina)
-	if(!get_parent().healing):
-		get_parent().stamina -= 0.01
+	# if (not in home):
+	else:
+		get_parent().stamina = max(get_parent().stamina -0.10, 0.0)
 		emit_signal("staminaSignal", get_parent().stamina)
 		
 
