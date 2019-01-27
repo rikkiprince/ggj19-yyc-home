@@ -31,6 +31,8 @@ func _process(delta):
 	if (get_parent().stamina <= 0.0):
 		print("Game Over - No Stamina")
 		emit_signal("deathSignal")
+		self.get_node("CollisionShape2D").disabled = true
+		get_parent().center_of_home_vector = get_parent().last_visited_home.global_position
 
 func _handleCollision(collision_info):
 	print(collision_info.collider)
@@ -46,6 +48,8 @@ func _handleCollision(collision_info):
 		if (get_parent().stamina <= 0.0):
 			print("Game Over - No Stamina")
 			emit_signal("deathSignal")
+			self.get_node("CollisionShape2D").disabled = true
+			get_parent().center_of_home_vector = get_parent().last_visited_home.global_position
 	
 			
 
@@ -81,6 +85,7 @@ func _physics_process(delta):
 		var move_to_center_of_home_vec = center_of_home_vector - global_position
 		if move_to_center_of_home_vec.length() < 2:
 			get_parent().center_of_home_vector = null
+			self.get_node("CollisionShape2D").disabled = false
 			joypad_vec = Vector2(0,0)
 		else:
 			joypad_vec = move_to_center_of_home_vec.normalized()
