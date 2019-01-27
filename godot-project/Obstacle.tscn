@@ -21,7 +21,7 @@ polygon = PoolVector2Array( -10, -10, 10, -10, 10, 10, -10, 10 )
 
 polygon = PoolVector2Array( -10, -10, -10, 10, 10, 10, 10, -10 )
 uv = PoolVector2Array(  )
-color = Color( 0.00616455, 0, 0.789062, 1 )
+color = Color( 0.433594, 0.171339, 0.226659, 1 )
 vertex_colors = PoolColorArray(  )
 offset = Vector2( 0, 0 )
 antialiased = false

@@ -9,7 +9,7 @@ func _on_KinematicBody2D_hitSignal(stamina):
 
 func _on_KinematicBody2D_deathSignal():
 	self.value = 0
-	get_tree().quit()
+	#get_tree().quit()
 
 func _on_Player_change_max_stamina_bar(new_max_stamina):
 	print("setting stamina to: " + str(new_max_stamina))
