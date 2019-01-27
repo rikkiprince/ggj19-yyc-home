@@ -13,7 +13,7 @@ var carried_objects = []
 func _ready():
 	joypad_vec = Vector2(0,0)
 	stamina = 100
-	
+
 
 
 	
@@ -37,3 +37,4 @@ func _on_Area2D_body_entered(body):
 func _on_Area2D_body_exited(body):
 	print("Exit Heal")
 	healing = false;
+

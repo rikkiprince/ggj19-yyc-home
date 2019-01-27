@@ -17,6 +17,7 @@ onready var startTime = OS.get_ticks_msec()
 func _ready():
 	joypad_vec = Vector2(0,0)
 	paused = true
+	add_to_group("player", true)
 
 # Drain a tiny bit of stamina
 func _process(delta):
@@ -24,7 +25,7 @@ func _process(delta):
 		# if (not in home):
 		get_parent().stamina -= 0.01
 		emit_signal("staminaSignal", get_parent().stamina)
-		print (startTime)
+
 
 	# if (not in home):
 	if(get_parent().healing and get_parent().stamina < 100):
