@@ -30,6 +30,7 @@ func pick_up_object(object, type):
 	print("picked up "+str(type))
 	carried_objects.append(type)
 	get_parent().get_node("PickUpSound").play()
+	get_parent().get_node("UI/SplashScreen").setPowerVisible(true)
 	return true
 
 # handle delivering picked up objects to Home
@@ -42,4 +43,5 @@ func drop_object():
 		last_visited_home.scale.x += 1
 		last_visited_home.scale.y += 1
 		get_parent().get_node("DropSound").play()
+		get_parent().get_node("UI/SplashScreen").setPowerVisible(false)
 	return temp

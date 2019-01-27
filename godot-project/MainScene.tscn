@@ -41,7 +41,6 @@ position = Vector2( 24.2927, -20.9801 )
 
 [node name="UI" type="CanvasLayer" parent="." index="3"]
 
-editor/display_folded = true
 layer = 1
 offset = Vector2( 0, 0 )
 rotation = 0.0

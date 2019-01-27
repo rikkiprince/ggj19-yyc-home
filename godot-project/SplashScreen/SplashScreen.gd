@@ -14,6 +14,7 @@ func _ready():
 	timer.start()
 	startScreenVisible(false)
 	get_node("PauseMsg").visible = false
+	get_node("PowerUpInd").visible = false
 
 func startScreenVisible(value):
 	get_parent().get_parent().get_node("UI/Node2D").visible = value
@@ -26,6 +27,9 @@ func startScreenVisible(value):
 func tick():
 	get_node("ButtonsAnim").nextFrame()
 	get_node("KeyboardAnim").nextFrame()
+
+func setPowerVisible(value):
+	get_node("PowerUpInd").visible = value
 
 func startGame():
 	gameStarted = true
