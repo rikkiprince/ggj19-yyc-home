@@ -6,10 +6,8 @@ export (int) var speed = 2
 
 var velocity = Vector2()
 var attackMode = false
-var paused 
+var paused = true
 
-func _ready():
-	paused = true
 func get_input():
 	velocity = Vector2()
 	velocity = (get_node("../Player/KinematicBody2D").global_position  - self.global_position).normalized()
