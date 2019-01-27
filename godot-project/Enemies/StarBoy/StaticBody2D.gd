@@ -22,7 +22,7 @@ func _physics_process(delta):
 
 func _on_Area2D_body_entered(body):
 	if(body.is_in_group("player")):
-		velocity = (get_node("../../Player/KinematicBody2D").global_position  - self.global_position).normalized()
+		velocity = (get_tree().get_root().get_node("MainScene/Player/KinematicBody2D").global_position  - self.global_position).normalized()
 		print ("In")
 		attackMode = true
 
