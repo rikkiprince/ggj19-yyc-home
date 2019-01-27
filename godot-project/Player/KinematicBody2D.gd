@@ -12,6 +12,7 @@ signal hitSignal
 
 onready var startTime = OS.get_ticks_msec()
 
+
 func _ready():
 	joypad_vec = Vector2(0,0)
 
@@ -49,6 +50,17 @@ func _physics_process(delta):
 #	if collision_info:
 #		velocity = velocity.bounce(collision_info.normal)
 	var newjoypad_vec = Vector2(Input.get_joy_axis(0, 0), Input.get_joy_axis(0, 1))
+
+	
+	# Keyboard controls
+	if (Input.is_key_pressed(KEY_A)): 
+		joypad_vec.x = -1
+	if (Input.is_key_pressed(KEY_D)): 
+		joypad_vec.x = 1
+	if (Input.is_key_pressed(KEY_W)): 
+		joypad_vec.y = -1
+	if (Input.is_key_pressed(KEY_S)): 
+		joypad_vec.y = 1
 
 	# Only change the joypad_vec if it's outside the deadzone
 	# no normalization
