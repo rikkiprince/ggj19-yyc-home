@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://MainScene.gd" type="Script" id=1]
 [ext_resource path="res://blurred-blurry-bokeh-220118.jpg" type="Texture" id=2]
@@ -14,12 +14,12 @@
 [ext_resource path="res://Audio/hitObject.wav" type="AudioStream" id=12]
 [ext_resource path="res://HitSound.gd" type="Script" id=13]
 
-[sub_resource type="CircleShape2D" id=1]
+[sub_resource type="CircleShape2D" id=2]
 
 custom_solver_bias = 0.0
-radius = 58.5364
+radius = 10.0
 
-[node name="MainScene" type="Node"]
+[node name="MainScene" type="Node" index="0"]
 
 script = ExtResource( 1 )
 
@@ -31,30 +31,10 @@ _sections_unfolded = [ "Transform", "Z Index" ]
 
 [node name="Home" parent="." index="1" instance=ExtResource( 3 )]
 
+editor/display_folded = true
 position = Vector2( -50, 50 )
 scale = Vector2( 2, 2 )
 _sections_unfolded = [ "Transform" ]
-
-[node name="Area2D" type="Area2D" parent="Home" index="0"]
-
-input_pickable = true
-gravity_vec = Vector2( 0, 1 )
-gravity = 98.0
-linear_damp = 0.1
-angular_damp = 1.0
-audio_bus_override = false
-audio_bus_name = "Master"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Home/Area2D" index="0"]
-
-modulate = Color( 0.282288, 0.976563, 0, 0.464118 )
-self_modulate = Color( 0.507813, 0.251923, 0.251923, 1 )
-light_mask = 49169
-use_parent_material = true
-position = Vector2( -0.256115, -0.12524 )
-scale = Vector2( 0.266741, 0.276793 )
-shape = SubResource( 1 )
-_sections_unfolded = [ "Material", "Transform", "Visibility" ]
 
 [node name="PowerUp" parent="." index="2" instance=ExtResource( 4 )]
 
@@ -63,7 +43,29 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="SpikeyBoy" parent="." index="3" instance=ExtResource( 5 )]
 
-[node name="Obstacle" parent="." index="4" instance=ExtResource( 6 )]
+position = Vector2( 370.278, -310.97 )
+scale = Vector2( 2, 2 )
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+collision/safe_margin = 0.08
+script = ExtResource( 5 )
+_sections_unfolded = [ "Transform", "collision" ]
+speed = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KinematicBody2D" index="0"]
+
+shape = SubResource( 2 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Sprite" type="Sprite" parent="KinematicBody2D/CollisionShape2D" index="0"]
+
+scale = Vector2( 0.0355808, 0.0388347 )
+texture = ExtResource( 6 )
+script = ExtResource( 7 )
+_sections_unfolded = [ "Animation", "Offset", "Transform", "Z Index" ]
+
+[node name="Obstacle" parent="." index="4" instance=ExtResource( 8 )]
 
 editor/display_folded = true
 position = Vector2( -5.69666, -64.6392 )
@@ -77,8 +79,7 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="Player" parent="." index="6" instance=ExtResource( 7 )]
 
-editor/display_folded = true
-position = Vector2( 348.455, 64.5315 )
+position = Vector2( 73.4419, 31.3827 )
 
 [node name="UI" type="CanvasLayer" parent="." index="7"]
 
@@ -150,13 +151,13 @@ _sections_unfolded = [ "Transform" ]
 
 [connection signal="deathSignal" from="Player/KinematicBody2D" to="UI/TextureProgress" method="_on_KinematicBody2D_deathSignal"]
 
-[connection signal="hitSignal" from="Player/KinematicBody2D" to="UI/TextureProgress" method="_on_KinematicBody2D_hitSignal"]
-
 [connection signal="hitSignal" from="Player/KinematicBody2D" to="HitSound" method="_on_KinematicBody2D_hitSignal"]
 
-[connection signal="staminaSignal" from="Player/KinematicBody2D" to="UI/TextureProgress" method="_on_KinematicBody2D_staminaSignal"]
+[connection signal="hitSignal" from="Player/KinematicBody2D" to="UI/TextureProgress" method="_on_KinematicBody2D_hitSignal"]
 
 [connection signal="staminaSignal" from="Player/KinematicBody2D" to="HitSound" method="_on_KinematicBody2D_staminaSignal"]
+
+[connection signal="staminaSignal" from="Player/KinematicBody2D" to="UI/TextureProgress" method="_on_KinematicBody2D_staminaSignal"]
 
 
 [editable path="Home"]
