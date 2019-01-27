@@ -1,9 +1,10 @@
+# this is the player kinematic body
 extends KinematicBody2D
 
 const MOTION_SPEED = 200
-#var JOYPAD_SENSITIVITY = 5
 const JOYPAD_DEADZONE = 0.6
 var joypad_vec
+var paused
 
 # Used to inform the UI
 signal deathSignal
@@ -15,9 +16,16 @@ onready var startTime = OS.get_ticks_msec()
 
 func _ready():
 	joypad_vec = Vector2(0,0)
+	paused = true
 
 # Drain a tiny bit of stamina
 func _process(delta):
+	if (!paused):
+		# if (not in home):
+		get_parent().stamina -= 0.01
+		emit_signal("staminaSignal", get_parent().stamina)
+		print (startTime)
+
 	# if (not in home):
 	if(get_parent().healing and get_parent().stamina < 100):
 		get_parent().stamina += 0.08
@@ -27,11 +35,9 @@ func _process(delta):
 		emit_signal("staminaSignal", get_parent().stamina)
 		
 
-
 func _handleCollision(collision_info):
 	print(collision_info.collider)
 	joypad_vec = joypad_vec.bounce(collision_info.normal)
-	
 	
 	if ((OS.get_ticks_msec() - startTime) > 500.0):
 		startTime = OS.get_ticks_msec()	
@@ -47,36 +53,30 @@ func _handleCollision(collision_info):
 			
 
 func _physics_process(delta):
-#	if collision_info:
-#		velocity = velocity.bounce(collision_info.normal)
-	var newjoypad_vec = Vector2(Input.get_joy_axis(0, 0), Input.get_joy_axis(0, 1))
+	if (!paused):
+		# get joy stick vector
+		var newjoypad_vec = Vector2(Input.get_joy_axis(0, 0), Input.get_joy_axis(0, 1))
+	
+		# Only change the joypad_vec if it's outside the deadzone
+		# no normalization
+		# this means the player can speed up or go back to a slower speed
+		if newjoypad_vec.length() > JOYPAD_DEADZONE:
+			joypad_vec = newjoypad_vec
 
 	
-	# Keyboard controls
-	if (Input.is_key_pressed(KEY_A)): 
-		joypad_vec.x = -1
-	if (Input.is_key_pressed(KEY_D)): 
-		joypad_vec.x = 1
-	if (Input.is_key_pressed(KEY_W)): 
-		joypad_vec.y = -1
-	if (Input.is_key_pressed(KEY_S)): 
-		joypad_vec.y = 1
+		# Keyboard controls
+		if (Input.is_key_pressed(KEY_A)): 
+			joypad_vec.x = -1
+		if (Input.is_key_pressed(KEY_D)): 
+			joypad_vec.x = 1
+		if (Input.is_key_pressed(KEY_W)): 
+			joypad_vec.y = -1
+		if (Input.is_key_pressed(KEY_S)): 
+			joypad_vec.y = 1
 
-	# Only change the joypad_vec if it's outside the deadzone
-	# no normalization
-	# this means the player can speed up or go back to a slower speed
-	if newjoypad_vec.length() > JOYPAD_DEADZONE:
-		joypad_vec = newjoypad_vec
+		if newjoypad_vec.length() > JOYPAD_DEADZONE:
+			joypad_vec = newjoypad_vec
 
-	# Only change the joypad_vec if it's outside the deadzone
-#	if newjoypad_vec.length() > JOYPAD_DEADZONE:
-		# kinda janky but this code is the reason
-#		joypad_vec = newjoypad_vec.normalized() * ((newjoypad_vec.length() - JOYPAD_DEADZONE) / (1 - JOYPAD_DEADZONE))
-
-#	move_and_slide(joypad_vec*delta*MOTION_SPEED)
-	var collision_info = move_and_collide(joypad_vec * delta*MOTION_SPEED)
-	
-	# this currently bounces off everything, should be just obstacles
-	if (collision_info != null):
-		_handleCollision(collision_info)
-		
+		var collision_info = move_and_collide(joypad_vec * delta*MOTION_SPEED)
+		if (collision_info != null):
+			_handleCollision(collision_info)

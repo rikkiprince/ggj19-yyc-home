@@ -21,6 +21,16 @@
 
 custom_solver_bias = 0.0
 radius = 58.5364
+[ext_resource path="res://Obstacle.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Player/Player.tscn" type="PackedScene" id=6]
+[ext_resource path="res://StaminaBar/energy_bar_bg.png" type="Texture" id=7]
+[ext_resource path="res://StaminaBar/energy_bar_fill.png" type="Texture" id=8]
+[ext_resource path="res://TextureProgress.gd" type="Script" id=9]
+[ext_resource path="res://Audio/ambient-guitar-music.ogg" type="AudioStream" id=10]
+[ext_resource path="res://Audio/hitObject.wav" type="AudioStream" id=11]
+[ext_resource path="res://HitSound.gd" type="Script" id=12]
+[ext_resource path="res://Audio/ItemPickUp.ogg" type="AudioStream" id=13]
+[ext_resource path="res://Audio/ItemDropOff.ogg" type="AudioStream" id=14]
 
 [sub_resource type="CircleShape2D" id=2]
 
@@ -43,27 +53,6 @@ editor/display_folded = true
 position = Vector2( -50, 50 )
 scale = Vector2( 2, 2 )
 _sections_unfolded = [ "Transform" ]
-
-[node name="Area2D" type="Area2D" parent="Home" index="0"]
-
-input_pickable = true
-gravity_vec = Vector2( 0, 1 )
-gravity = 98.0
-linear_damp = 0.1
-angular_damp = 1.0
-audio_bus_override = false
-audio_bus_name = "Master"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Home/Area2D" index="0"]
-
-modulate = Color( 0.282288, 0.976563, 0, 0.464118 )
-self_modulate = Color( 0.507813, 0.251923, 0.251923, 1 )
-light_mask = 49169
-use_parent_material = true
-position = Vector2( -0.256115, -0.12524 )
-scale = Vector2( 0.266741, 0.276793 )
-shape = SubResource( 1 )
-_sections_unfolded = [ "Material", "Transform", "Visibility" ]
 
 [node name="PowerUp" parent="." index="2" instance=ExtResource( 4 )]
 
@@ -115,6 +104,7 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="UI" type="CanvasLayer" parent="." index="8"]
 
+editor/display_folded = true
 layer = 1
 offset = Vector2( 0, 0 )
 rotation = 0.0
@@ -158,7 +148,7 @@ _sections_unfolded = [ "Margin" ]
 stream = ExtResource( 14 )
 volume_db = -10.0
 pitch_scale = 1.0
-autoplay = true
+autoplay = false
 mix_target = 0
 bus = "Master"
 
@@ -175,11 +165,18 @@ area_mask = 1
 script = ExtResource( 16 )
 _sections_unfolded = [ "Transform" ]
 
-[connection signal="body_entered" from="Home/Area2D" to="Player" method="_on_Area2D_body_entered"]
+[node name="PickUpSound" type="AudioStreamPlayer2D" parent="." index="9"]
 
-[connection signal="body_exited" from="Home/Area2D" to="Player" method="_on_Area2D_body_exited"]
+stream = ExtResource( 13 )
+volume_db = 0.0
+pitch_scale = 1.0
+autoplay = false
+max_distance = 2000.0
+attenuation = 1.0
+bus = "Master"
+area_mask = 1
 
-[connection signal="deathSignal" from="Player/KinematicBody2D" to="UI/TextureProgress" method="_on_KinematicBody2D_deathSignal"]
+[node name="DropOffSound" type="AudioStreamPlayer2D" parent="." index="10"]
 
 [connection signal="hitSignal" from="Player/KinematicBody2D" to="HitSound" method="_on_KinematicBody2D_hitSignal"]
 

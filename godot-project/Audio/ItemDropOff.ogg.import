@@ -11,5 +11,5 @@ dest_files=[ "res://.import/ItemDropOff.ogg-8cc8b81c9f16d28f623e11d8fac969ea.ogg
 
 [params]
 
-loop=true
+loop=false
 loop_offset=0

@@ -27,6 +27,7 @@ func pick_up_object(object, type):
 	
 	print("picked up "+str(type))
 	carried_objects.append(type)
+	get_parent().get_node("PickUpSound").play()
 	return true
 
 func _on_Area2D_body_entered(body):
