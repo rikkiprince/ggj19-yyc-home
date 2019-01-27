@@ -27,7 +27,10 @@ func _process(delta):
 	else:
 		get_parent().stamina = max(get_parent().stamina -0.10, 0.0)
 		emit_signal("staminaSignal", get_parent().stamina)
-		
+	# Check if player is dead
+	if (get_parent().stamina <= 0.0):
+		print("Game Over - No Stamina")
+		emit_signal("deathSignal")
 
 func _handleCollision(collision_info):
 	print(collision_info.collider)
