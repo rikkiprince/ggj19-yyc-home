@@ -1,18 +1,9 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://Player/KinematicBody2D.gd" type="Script" id=2]
 
-[sub_resource type="GDScript" id=1]
-
-script/source = "extends Polygon2D
-
-func _ready():
-	
-	pass
-"
-
-[sub_resource type="CircleShape2D" id=2]
+[sub_resource type="CircleShape2D" id=1]
 
 custom_solver_bias = 0.0
 radius = 9.0
@@ -46,7 +37,6 @@ texture_scale = Vector2( 1, 1 )
 texture_rotation_degrees = 0.0
 invert_enable = false
 invert_border = 100.0
-script = SubResource( 1 )
 
 [node name="Camera2D" type="Camera2D" parent="KinematicBody2D" index="1"]
 
@@ -76,6 +66,6 @@ _sections_unfolded = [ "Drag Margin", "Limit" ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="KinematicBody2D" index="2"]
 
-shape = SubResource( 2 )
+shape = SubResource( 1 )
 
 

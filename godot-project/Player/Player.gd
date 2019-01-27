@@ -7,6 +7,7 @@ var joypad_vec
 var stamina
 var healing
 var center_of_home_vector = null
+var last_visited_home = null
 
 export var max_stamina = 10
 
@@ -42,6 +43,8 @@ func drop_object():
 	if(len(temp) > 0):
 		max_stamina += len(temp)*10
 		emit_signal("change_max_stamina_bar", max_stamina)
+		last_visited_home.scale.x += 1
+		last_visited_home.scale.y += 1
 		get_parent().get_node("DropSound").play()
 	return temp
 

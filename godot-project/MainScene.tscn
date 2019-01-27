@@ -20,7 +20,7 @@
 [ext_resource path="res://Levels/LevelEast.tscn" type="PackedScene" id=18]
 [ext_resource path="res://SplashScreen/SplashScreen.tscn" type="PackedScene" id=19]
 
-[node name="MainScene" type="Node"]
+[node name="MainScene" type="Node" index="0"]
 
 script = ExtResource( 1 )
 
@@ -64,7 +64,6 @@ _sections_unfolded = [ "Transform" ]
 [node name="Player" parent="." index="7" instance=ExtResource( 7 )]
 
 position = Vector2( -49.3312, 51.0264 )
-max_stamina = 10
 
 [node name="Camera2D" parent="Player/KinematicBody2D" index="1"]
 
@@ -175,6 +174,8 @@ position = Vector2( 1170, -20 )
 [node name="SplashScreen" parent="." index="16" instance=ExtResource( 19 )]
 
 position = Vector2( -40, 180 )
+
+[connection signal="change_max_stamina_bar" from="Player" to="UI/Node2D/TextureProgress" method="_on_Player_change_max_stamina_bar"]
 
 [connection signal="deathSignal" from="Player/KinematicBody2D" to="UI/Node2D/TextureProgress" method="_on_KinematicBody2D_deathSignal"]
 
