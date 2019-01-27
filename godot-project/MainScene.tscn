@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://MainScene.gd" type="Script" id=1]
 [ext_resource path="res://blurred-blurry-bokeh-220118.jpg" type="Texture" id=2]
@@ -13,11 +13,13 @@
 [ext_resource path="res://HitSound.gd" type="Script" id=11]
 [ext_resource path="res://Audio/ItemPickUp.ogg" type="AudioStream" id=12]
 [ext_resource path="res://Audio/ItemDropOff.ogg" type="AudioStream" id=13]
-[ext_resource path="res://Levels/LevelWest.tscn" type="PackedScene" id=14]
-[ext_resource path="res://Levels/LevelNorth.tscn" type="PackedScene" id=15]
-[ext_resource path="res://Levels/LevelStart.tscn" type="PackedScene" id=16]
-[ext_resource path="res://Levels/LevelEast.tscn" type="PackedScene" id=17]
-[ext_resource path="res://Levels/LevelSouth.tscn" type="PackedScene" id=18]
+[ext_resource path="res://Audio/deathSound.wav" type="AudioStream" id=14]
+[ext_resource path="res://DeathSound.gd" type="Script" id=15]
+[ext_resource path="res://Levels/LevelWest.tscn" type="PackedScene" id=16]
+[ext_resource path="res://Levels/LevelNorth.tscn" type="PackedScene" id=17]
+[ext_resource path="res://Levels/LevelStart.tscn" type="PackedScene" id=18]
+[ext_resource path="res://Levels/LevelEast.tscn" type="PackedScene" id=19]
+[ext_resource path="res://Levels/LevelSouth.tscn" type="PackedScene" id=20]
 
 [node name="MainScene" type="Node" index="0"]
 
@@ -135,35 +137,49 @@ attenuation = 1.0
 bus = "Master"
 area_mask = 1
 
-[node name="LevelWest" parent="." index="8" instance=ExtResource( 14 )]
+[node name="DeathSound" type="AudioStreamPlayer2D" parent="." index="8"]
+
+stream = ExtResource( 14 )
+volume_db = 0.0
+pitch_scale = 1.0
+autoplay = false
+max_distance = 2000.0
+attenuation = 1.0
+bus = "Master"
+area_mask = 1
+script = ExtResource( 15 )
+
+[node name="LevelWest" parent="." index="9" instance=ExtResource( 16 )]
 
 position = Vector2( -1232.99, 25.1631 )
 
-[node name="LevelNorth" parent="." index="9" instance=ExtResource( 15 )]
+[node name="LevelNorth" parent="." index="10" instance=ExtResource( 17 )]
 
 position = Vector2( -389.399, -813.67 )
 
-[node name="LevelStart" parent="." index="10" instance=ExtResource( 16 )]
+[node name="LevelStart" parent="." index="11" instance=ExtResource( 18 )]
 
-[node name="LevelEast" parent="." index="11" instance=ExtResource( 17 )]
+[node name="LevelEast" parent="." index="12" instance=ExtResource( 19 )]
 
 position = Vector2( 1160, -20 )
 
-[node name="LevelSouth" parent="." index="12" instance=ExtResource( 18 )]
+[node name="LevelSouth" parent="." index="13" instance=ExtResource( 20 )]
 
 position = Vector2( 76.4426, 476.856 )
 
 [connection signal="change_max_stamina_bar" from="Player" to="UI/Node2D/TextureProgress" method="_on_Player_change_max_stamina_bar"]
 
-[connection signal="deathSignal" from="Player/KinematicBody2D" to="UI/Node2D/TextureProgress" method="_on_KinematicBody2D_deathSignal"]
+[connection signal="deathSignal" from="Player/KinematicBody2D" to="DeathSound" method="_on_KinematicBody2D_deathSignal"]
 
 [connection signal="deathSignal" from="Player/KinematicBody2D" to="HitSound" method="_on_KinematicBody2D_deathSignal"]
 
+[connection signal="deathSignal" from="Player/KinematicBody2D" to="UI/Node2D/TextureProgress" method="_on_KinematicBody2D_deathSignal"]
+
 [connection signal="hitSignal" from="Player/KinematicBody2D" to="UI/Node2D/TextureProgress" method="_on_KinematicBody2D_hitSignal"]
 
-[connection signal="staminaSignal" from="Player/KinematicBody2D" to="UI/Node2D/TextureProgress" method="_on_KinematicBody2D_staminaSignal"]
-
 [connection signal="staminaSignal" from="Player/KinematicBody2D" to="HitSound" method="_on_KinematicBody2D_staminaSignal"]
+
+[connection signal="staminaSignal" from="Player/KinematicBody2D" to="UI/Node2D/TextureProgress" method="_on_KinematicBody2D_staminaSignal"]
 
 
 [editable path="Player"]
