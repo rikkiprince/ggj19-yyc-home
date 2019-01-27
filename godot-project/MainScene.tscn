@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://MainScene.gd" type="Script" id=1]
 [ext_resource path="res://blurred-blurry-bokeh-220118.jpg" type="Texture" id=2]
@@ -14,19 +14,20 @@
 [ext_resource path="res://Audio/ambient-guitar-music.ogg" type="AudioStream" id=12]
 [ext_resource path="res://Audio/hitObject.wav" type="AudioStream" id=13]
 [ext_resource path="res://HitSound.gd" type="Script" id=14]
+[ext_resource path="res://Enemies/StarBoy/StarBoy.tscn" type="PackedScene" id=15]
 
 [sub_resource type="CircleShape2D" id=1]
 
 custom_solver_bias = 0.0
 radius = 58.5364
 
-[node name="MainScene" type="Node" index="0"]
+[node name="MainScene" type="Node"]
 
 script = ExtResource( 1 )
 
 [node name="Background" type="Sprite" parent="." index="0"]
 
-position = Vector2( 0, 0.0246429 )
+position = Vector2( 0, 7.39104 )
 texture = ExtResource( 2 )
 _sections_unfolded = [ "Transform", "Z Index" ]
 
@@ -70,7 +71,7 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="SpikeyBoy" parent="." index="4" instance=ExtResource( 6 )]
 
-position = Vector2( 454.262, -202.576 )
+position = Vector2( 454.262, -201.348 )
 
 [node name="Obstacle" parent="." index="5" instance=ExtResource( 7 )]
 
@@ -86,7 +87,6 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="Player" parent="." index="7" instance=ExtResource( 8 )]
 
-editor/display_folded = true
 position = Vector2( -49.3312, 51.0264 )
 
 [node name="UI" type="CanvasLayer" parent="." index="8"]
@@ -153,19 +153,31 @@ area_mask = 1
 script = ExtResource( 14 )
 _sections_unfolded = [ "Transform" ]
 
+[node name="StarBoy" parent="." index="11" instance=ExtResource( 15 )]
+
+position = Vector2( -581.946, 211.17 )
+
+[node name="StarBoy2" parent="." index="12" instance=ExtResource( 15 )]
+
+position = Vector2( -457.945, 130.14 )
+
+[node name="StarBoy3" parent="." index="13" instance=ExtResource( 15 )]
+
+position = Vector2( -612.64, 83.486 )
+
 [connection signal="body_entered" from="Home/Area2D" to="Player" method="_on_Area2D_body_entered"]
 
 [connection signal="body_exited" from="Home/Area2D" to="Player" method="_on_Area2D_body_exited"]
 
 [connection signal="deathSignal" from="Player/KinematicBody2D" to="UI/TextureProgress" method="_on_KinematicBody2D_deathSignal"]
 
-[connection signal="hitSignal" from="Player/KinematicBody2D" to="HitSound" method="_on_KinematicBody2D_hitSignal"]
-
 [connection signal="hitSignal" from="Player/KinematicBody2D" to="UI/TextureProgress" method="_on_KinematicBody2D_hitSignal"]
 
-[connection signal="staminaSignal" from="Player/KinematicBody2D" to="HitSound" method="_on_KinematicBody2D_staminaSignal"]
+[connection signal="hitSignal" from="Player/KinematicBody2D" to="HitSound" method="_on_KinematicBody2D_hitSignal"]
 
 [connection signal="staminaSignal" from="Player/KinematicBody2D" to="UI/TextureProgress" method="_on_KinematicBody2D_staminaSignal"]
+
+[connection signal="staminaSignal" from="Player/KinematicBody2D" to="HitSound" method="_on_KinematicBody2D_staminaSignal"]
 
 
 [editable path="Home"]
