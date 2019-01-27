@@ -21,12 +21,7 @@ func _ready():
 	stamina = max_stamina
 	emit_signal("change_max_stamina_bar", max_stamina)
 
-
-
-	
-func _physics_process(delta):
-	pass
-
+# handle collection of pickup objects
 func pick_up_object(object, type):
 	if(len(carried_objects) >= max_object_capacity):
 		print("carrying too many objects!")
@@ -37,6 +32,7 @@ func pick_up_object(object, type):
 	get_parent().get_node("PickUpSound").play()
 	return true
 
+# handle delivering picked up objects to Home
 func drop_object():
 	var temp = carried_objects
 	carried_objects = []
@@ -47,12 +43,3 @@ func drop_object():
 		last_visited_home.scale.y += 1
 		get_parent().get_node("DropSound").play()
 	return temp
-
-#func _on_Area2D_body_entered(body):
-#	print("Heal")
-#	healing = true;
-#
-#func _on_Area2D_body_exited(body):
-#	print("Exit Heal")
-#	healing = false;
-
