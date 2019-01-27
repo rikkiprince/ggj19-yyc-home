@@ -10,9 +10,10 @@ enum PICKUP {
 
 func _on_Area2D_body_entered(body):
 	print(body)
+	if(body == get_node("../Player/KinematicBody2D")):
 	# tell body to attempt to pick up (type of) object
-	var picked_up = body.get_parent().pick_up_object(self, PICKUP.diamond)
-	if(picked_up):
-		# (turn off collider and initiate animation/particle effect: nice to have)
-		# remove this object
-		get_parent().remove_child(self)
+		var picked_up = body.get_parent().pick_up_object(self, PICKUP.diamond)
+		if(picked_up):
+			# (turn off collider and initiate animation/particle effect: nice to have)
+			# remove this object
+			get_parent().remove_child(self)
