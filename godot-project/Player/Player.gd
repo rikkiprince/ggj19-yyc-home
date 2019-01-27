@@ -8,12 +8,14 @@ var stamina
 var healing
 var center_of_home_vector = null
 
+export var max_stamina = 25
+
 export var max_object_capacity = 1
 var carried_objects = []
 
 func _ready():
 	joypad_vec = Vector2(0,0)
-	stamina = 100
+	stamina = max_stamina
 
 
 
@@ -35,14 +37,15 @@ func drop_object():
 	var temp = carried_objects
 	carried_objects = []
 	if(len(temp) > 0):
+		max_stamina += len(temp)
 		get_parent().get_node("DropSound").play()
 	return temp
 
-func _on_Area2D_body_entered(body):
-	print("Heal")
-	healing = true;
-
-func _on_Area2D_body_exited(body):
-	print("Exit Heal")
-	healing = false;
+#func _on_Area2D_body_entered(body):
+#	print("Heal")
+#	healing = true;
+#
+#func _on_Area2D_body_exited(body):
+#	print("Exit Heal")
+#	healing = false;
 

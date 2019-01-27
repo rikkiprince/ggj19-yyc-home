@@ -38,6 +38,7 @@ texture_scale = Vector2( 1, 1 )
 texture_rotation_degrees = 0.0
 invert_enable = false
 invert_border = 100.0
+_sections_unfolded = [ "Visibility" ]
 
 [node name="InsideShape" type="Polygon2D" parent="OutsideShape" index="0"]
 
@@ -55,5 +56,7 @@ invert_enable = false
 invert_border = 100.0
 
 [connection signal="body_entered" from="Area2D" to="Area2D" method="_on_Area2D_body_entered"]
+
+[connection signal="body_exited" from="Area2D" to="Area2D" method="_on_Area2D_body_exited"]
 
 

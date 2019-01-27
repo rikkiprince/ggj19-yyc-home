@@ -24,12 +24,13 @@ func _process(delta):
 	if (!paused):
 		# if (not in home):
 		get_parent().stamina -= 0.10
+		print(get_parent().stamina)
 		emit_signal("staminaSignal", get_parent().stamina)
 
 
 	# if (not in home):
-	if(get_parent().healing and get_parent().stamina < 100):
-		get_parent().stamina += 0.08
+	if(get_parent().healing and get_parent().stamina < get_parent().max_stamina):
+		get_parent().stamina += 0.5
 		emit_signal("staminaSignal", get_parent().stamina)
 	if(!get_parent().healing):
 		get_parent().stamina -= 0.01

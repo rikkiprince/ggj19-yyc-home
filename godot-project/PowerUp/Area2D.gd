@@ -11,7 +11,7 @@ enum PICKUP {
 func _on_Area2D_body_entered(body):
 	print("POWERUP")
 	print(body)
-	if(body == get_node("../../Player/KinematicBody2D")):
+	if(body == get_tree().get_root().get_node("MainScene/Player/KinematicBody2D")):
 		# tell body to attempt to pick up (type of) object
 		print(body.get_parent().name)
 		var picked_up = body.get_parent().pick_up_object(self, PICKUP.diamond)
