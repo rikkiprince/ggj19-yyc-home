@@ -20,3 +20,11 @@ func _on_KinematicBody2D_hitSignal(stamina):
 	if (!self.playing): # make sure sound isnt already playing
 		self.play(0)
 	
+
+
+func _on_KinematicBody2D_deathSignal():
+	pass # replace with function body
+
+
+func _on_KinematicBody2D_staminaSignal():
+	pass # replace with function body
