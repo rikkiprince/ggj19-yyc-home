@@ -23,7 +23,7 @@ func _ready():
 func _process(delta):
 	if (!paused):
 		# if (not in home):
-		get_parent().stamina -= 0.01
+		get_parent().stamina -= 0.10
 		emit_signal("staminaSignal", get_parent().stamina)
 
 
@@ -79,6 +79,16 @@ func _physics_process(delta):
 
 		if newjoypad_vec.length() > JOYPAD_DEADZONE:
 			joypad_vec = newjoypad_vec
+		
+		# gravitate into center of home once entered
+		var center_of_home_vector = get_parent().center_of_home_vector
+		if center_of_home_vector != null:
+			var move_to_center_of_home_vec = center_of_home_vector - global_position
+			if move_to_center_of_home_vec.length() < 2:
+				get_parent().center_of_home_vector = null
+				joypad_vec = Vector2(0,0)
+			else:
+				joypad_vec = move_to_center_of_home_vec.normalized()
 
 		var collision_info = move_and_collide(joypad_vec * delta*MOTION_SPEED)
 		if (collision_info != null):

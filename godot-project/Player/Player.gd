@@ -6,6 +6,7 @@ const JOYPAD_DEADZONE = 0.50
 var joypad_vec
 var stamina
 var healing
+var center_of_home_vector = null
 
 export var max_object_capacity = 1
 var carried_objects = []
