@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://MainScene.gd" type="Script" id=1]
 [ext_resource path="res://blurred-blurry-bokeh-220118.jpg" type="Texture" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://Audio/ambient-guitar-music.ogg" type="AudioStream" id=10]
 [ext_resource path="res://Audio/hitObject.wav" type="AudioStream" id=11]
 [ext_resource path="res://HitSound.gd" type="Script" id=12]
+[ext_resource path="res://Audio/ItemPickUp.ogg" type="AudioStream" id=13]
 
 [node name="MainScene" type="Node" index="0"]
 
@@ -47,8 +48,11 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="Player" parent="." index="5" instance=ExtResource( 6 )]
 
+editor/display_folded = true
+
 [node name="UI" type="CanvasLayer" parent="." index="6"]
 
+editor/display_folded = true
 layer = 1
 offset = Vector2( 0, 0 )
 rotation = 0.0
@@ -107,13 +111,23 @@ attenuation = 1.0
 bus = "Master"
 area_mask = 1
 script = ExtResource( 12 )
-_sections_unfolded = [ "Transform" ]
+
+[node name="PickUpSound" type="AudioStreamPlayer2D" parent="." index="9"]
+
+stream = ExtResource( 13 )
+volume_db = 0.0
+pitch_scale = 1.0
+autoplay = false
+max_distance = 2000.0
+attenuation = 1.0
+bus = "Master"
+area_mask = 1
 
 [connection signal="deathSignal" from="Player/KinematicBody2D" to="UI/TextureProgress" method="_on_KinematicBody2D_deathSignal"]
 
-[connection signal="staminaSignal" from="Player/KinematicBody2D" to="UI/TextureProgress" method="_on_KinematicBody2D_staminaSignal"]
-
 [connection signal="staminaSignal" from="Player/KinematicBody2D" to="HitSound" method="_on_KinematicBody2D_staminaSignal"]
+
+[connection signal="staminaSignal" from="Player/KinematicBody2D" to="UI/TextureProgress" method="_on_KinematicBody2D_staminaSignal"]
 
 
 [editable path="Player"]
