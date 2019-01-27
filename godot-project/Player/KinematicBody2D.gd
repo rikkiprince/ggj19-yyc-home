@@ -65,15 +65,17 @@ func _physics_process(delta):
 			joypad_vec = newjoypad_vec
 
 	
+		var vec_delta = 0.05
+		var vec_max = 0.5
 		# Keyboard controls
 		if (Input.is_key_pressed(KEY_A)): 
-			joypad_vec.x = -1
+			joypad_vec.x = max(joypad_vec.x - vec_delta, -vec_max)
 		if (Input.is_key_pressed(KEY_D)): 
-			joypad_vec.x = 1
+			joypad_vec.x = min(joypad_vec.x + vec_delta, vec_max)
 		if (Input.is_key_pressed(KEY_W)): 
-			joypad_vec.y = -1
+			joypad_vec.y = max(joypad_vec.y - vec_delta, -vec_max)
 		if (Input.is_key_pressed(KEY_S)): 
-			joypad_vec.y = 1
+			joypad_vec.y = min(joypad_vec.y + vec_delta, vec_max)
 
 		if newjoypad_vec.length() > JOYPAD_DEADZONE:
 			joypad_vec = newjoypad_vec
