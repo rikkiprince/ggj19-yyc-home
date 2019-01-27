@@ -13,7 +13,10 @@ var carried_objects = []
 func _ready():
 	joypad_vec = Vector2(0,0)
 	stamina = 100
+	
 
+
+	
 func _physics_process(delta):
 	pass
 
